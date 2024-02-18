@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/movies-explorer-frontend/static/css/main.c238a910.css",
-    "main.js": "/movies-explorer-frontend/static/js/main.f329046c.js",
-    "static/media/avatar-me.jpg": "/movies-explorer-frontend/static/media/avatar-me.f8397dfc5374670803f4.jpg",
-    "static/media/pic__COLOR_landing-logo.svg": "/movies-explorer-frontend/static/media/pic__COLOR_landing-logo.c434a089e9304bb4feaf.svg",
-    "index.html": "/movies-explorer-frontend/index.html",
-    "static/media/find.svg": "/movies-explorer-frontend/static/media/find.1f9d48237e00ca6339ea8ee8f160c739.svg",
-    "static/media/logoAuthBlack.svg": "/movies-explorer-frontend/static/media/logoAuthBlack.17c3d87af32a60fa778cdb41042be0d2.svg",
-    "static/media/logoAuthPink.svg": "/movies-explorer-frontend/static/media/logoAuthPink.bdee47babf4ac48de177fc709115a94c.svg",
-    "static/media/iconDelete.svg": "/movies-explorer-frontend/static/media/iconDelete.c21e68e02377c11a80bb6a4e2d9768d1.svg",
-    "static/media/logo.svg": "/movies-explorer-frontend/static/media/logo.a7b45961954104d0586ad2bc985b31cc.svg",
-    "static/media/logoBurder.svg": "/movies-explorer-frontend/static/media/logoBurder.08035af1e508cd8cfed5606a27648836.svg",
-    "static/media/close.svg": "/movies-explorer-frontend/static/media/close.8f7319ed31ca2b9aebb24c10cab104ce.svg",
-    "static/media/arrow.svg": "/movies-explorer-frontend/static/media/arrow.2f133fb2a9b9c682afa2.svg",
-    "static/media/check-mark.svg": "/movies-explorer-frontend/static/media/check-mark.302833fa49f2274557fcf526a1fe6996.svg",
-    "main.c238a910.css.map": "/movies-explorer-frontend/static/css/main.c238a910.css.map",
-    "main.f329046c.js.map": "/movies-explorer-frontend/static/js/main.f329046c.js.map"
+    "main.css": "./static/css/main.a44fbc3c.css",
+    "main.js": "./static/js/main.62010420.js",
+    "static/media/avatar-me.jpg": "./static/media/avatar-me.f8397dfc5374670803f4.jpg",
+    "static/media/pic__COLOR_landing-logo.svg": "./static/media/pic__COLOR_landing-logo.c434a089e9304bb4feaf.svg",
+    "index.html": "./index.html",
+    "static/media/find.svg": "./static/media/find.1f9d48237e00ca6339ea8ee8f160c739.svg",
+    "static/media/logoAuthBlack.svg": "./static/media/logoAuthBlack.17c3d87af32a60fa778cdb41042be0d2.svg",
+    "static/media/logoAuthPink.svg": "./static/media/logoAuthPink.bdee47babf4ac48de177fc709115a94c.svg",
+    "static/media/iconDelete.svg": "./static/media/iconDelete.c21e68e02377c11a80bb6a4e2d9768d1.svg",
+    "static/media/logo.svg": "./static/media/logo.a7b45961954104d0586ad2bc985b31cc.svg",
+    "static/media/logoBurder.svg": "./static/media/logoBurder.08035af1e508cd8cfed5606a27648836.svg",
+    "static/media/close.svg": "./static/media/close.8f7319ed31ca2b9aebb24c10cab104ce.svg",
+    "static/media/arrow.svg": "./static/media/arrow.2f133fb2a9b9c682afa2.svg",
+    "static/media/check-mark.svg": "./static/media/check-mark.302833fa49f2274557fcf526a1fe6996.svg",
+    "main.a44fbc3c.css.map": "./static/css/main.a44fbc3c.css.map",
+    "main.62010420.js.map": "./static/js/main.62010420.js.map"
   },
   "entrypoints": [
-    "static/css/main.c238a910.css",
-    "static/js/main.f329046c.js"
+    "static/css/main.a44fbc3c.css",
+    "static/js/main.62010420.js"
   ]
 }
