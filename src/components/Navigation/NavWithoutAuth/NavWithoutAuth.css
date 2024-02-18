@@ -1,0 +1,39 @@
+.nav-without__text {
+    color: #000000;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    text-align: center;
+}
+
+.nav-without__list {
+    margin: 0;
+}
+
+.nav-without__button {
+    color: #FFFFFF;
+    text-decoration: none;
+    background-color: #000000;
+    width: 76px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    border-radius: 3px;
+}
+
+@media screen and (max-width: 400px) {
+    .nav-without__text {
+        font-size: 10px;
+    }
+
+    .nav-without__button {
+        font-size: 10px;
+        width: 54px;
+        height: 26px;
+    }
+}

@@ -1,0 +1,202 @@
+.search-form {
+    max-width: 1280px;
+    width: 100%;
+    padding: 70px 70px 0;
+    box-sizing: border-box;
+}
+
+.search-from__container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    margin: 0 auto;
+    padding: 19px 30px 19px 25px;
+    box-sizing: border-box;
+    justify-content: space-between;
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.08), -2px -2px 2px 2px rgba(0, 0, 0, 0.08);
+    border-radius: 9px;
+    background-color: rgba(253, 253, 253, 1);
+}
+
+.search-form__line {
+    width: 100%;
+    border-bottom: 1px solid #E8E8E8;
+    margin: 69px 0 10px;
+}
+
+.search-form__label {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-right: 1px solid #CBCBCB;
+    gap: 16px;
+}
+
+.search-form__button:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+/*.toggle-button {*/
+/*    -webkit-appearance: none;*/
+/*    -moz-appearance: none;*/
+/*    appearance: none;*/
+/*}*/
+
+/*.toggle-button {*/
+/*    position: relative;*/
+/*    display: inline-block;*/
+/*    width: 34px;*/
+/*    height: 14px;*/
+/*    margin: 0;*/
+/*    vertical-align: top;*/
+/*    background: #2BE080;*/
+/*    border: none;*/
+/*    border-radius: 20px;*/
+/*    outline: none;*/
+/*    cursor: pointer;*/
+/*    -webkit-appearance: none;*/
+/*    -moz-appearance: none;*/
+/*    appearance: none;*/
+/*}*/
+
+/*.toggle-button::after {*/
+/*    content: "";*/
+/*    display: inline-block;*/
+/*    position: absolute;*/
+/*    right: 2px;*/
+/*    top: 2px;*/
+/*    width: 10px;*/
+/*    height: 10px;*/
+/*    background-color: #FFFFFF;*/
+/*    border-radius: 50%;*/
+/*    transform: translateX(0);*/
+/*}*/
+
+/*.toggle-button:checked::after {*/
+/*    transform: translateX(calc(100% - 30px));*/
+/*    background-color: #F5F5F5;*/
+/*}*/
+
+/*.toggle-button:checked {*/
+/*    background-color: #EBEBEB;*/
+/*}*/
+
+/*.container {*/
+/*    display: flex;*/
+/*    flex-direction: row;*/
+/*    gap: 14px;*/
+/*    align-items: center;*/
+/*    margin-left: 29px;*/
+/*}*/
+
+/*.text {*/
+/*    font-weight: 400;*/
+/*    font-size: 13px;*/
+/*    line-height: 18px;*/
+/*}*/
+
+
+.search-form__img {
+    display: flex;
+    width: 22px;
+    height: 22px;
+}
+
+.search-form__input {
+    outline: none;
+    border: none;
+    padding: 0;
+    width: 85%;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 20px;
+}
+
+.search-form__button {
+    margin-right: 19px;
+    background-color: #000000;
+    color: #FFFFFF;
+    width: 59px;
+    height: 34px;
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 18px;
+    border: 0;
+    border-radius: 30px;
+    padding: 0;
+}
+
+.search-form__line {
+    border-bottom: 1px solid #E8E8E8;
+    margin-top: 69px;
+    margin-bottom: 10px;
+}
+
+@media screen and (max-width: 800px ) {
+    .search-form {
+        padding: 80px 30px 0;
+    }
+
+    .search-form__line {
+        margin-top: 109px;
+    }
+
+    .search-from__container {
+        height: 72px;
+        padding-right: 20px;
+    }
+}
+
+
+@media screen and (max-width: 600px) {
+    .search-form {
+        padding-right: 10px;
+        padding-left: 10px;
+    }
+
+    .search-form__line {
+        margin-top: 45px;
+    }
+
+    .search-from__container {
+        flex-direction: column;
+    }
+
+    .search-from__container {
+       display: inline;
+        box-sizing: border-box;
+        text-align: center;
+        border-right: 0;
+        padding: 0;
+        box-shadow: none;
+        border-radius: 0;
+        background-color: #FFFFFF;
+
+    }
+
+    .search-form__img {
+        display: none;
+    }
+
+    .search-form__label {
+        height: 72px;
+        padding: 25px 19px 30px;
+        box-sizing: border-box;
+        justify-content: space-between;
+        box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.08), -2px -2px 2px 2px rgba(0, 0, 0, 0.08);
+        border-radius: 9px;
+        background-color: rgba(253, 253, 253, 1);
+    }
+
+    .search-form__input {
+        font-size: 14px;
+    }
+
+    .search-form__button {
+        margin-right: 0;
+    }
+
+}
