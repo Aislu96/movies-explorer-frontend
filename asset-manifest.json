@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/movies-explorer-frontend/static/css/main.c238a910.css",
+    "main.css": "/movies-explorer-frontend/static/css/main.1bf638b4.css",
     "main.js": "/movies-explorer-frontend/static/js/main.569b3742.js",
     "static/media/avatar-me.jpg": "/movies-explorer-frontend/static/media/avatar-me.f8397dfc5374670803f4.jpg",
     "static/media/pic__COLOR_landing-logo.svg": "/movies-explorer-frontend/static/media/pic__COLOR_landing-logo.c434a089e9304bb4feaf.svg",
@@ -14,11 +14,11 @@
     "static/media/close.svg": "/movies-explorer-frontend/static/media/close.8f7319ed31ca2b9aebb24c10cab104ce.svg",
     "static/media/arrow.svg": "/movies-explorer-frontend/static/media/arrow.2f133fb2a9b9c682afa2.svg",
     "static/media/check-mark.svg": "/movies-explorer-frontend/static/media/check-mark.302833fa49f2274557fcf526a1fe6996.svg",
-    "main.c238a910.css.map": "/movies-explorer-frontend/static/css/main.c238a910.css.map",
+    "main.1bf638b4.css.map": "/movies-explorer-frontend/static/css/main.1bf638b4.css.map",
     "main.569b3742.js.map": "/movies-explorer-frontend/static/js/main.569b3742.js.map"
   },
   "entrypoints": [
-    "static/css/main.c238a910.css",
+    "static/css/main.1bf638b4.css",
     "static/js/main.569b3742.js"
   ]
 }
