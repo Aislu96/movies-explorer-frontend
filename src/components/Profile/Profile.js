@@ -5,7 +5,7 @@ import "../Profile/Profile.css";
 function Profile() {
     const navigate = useNavigate();
     const [buttonToggle, setButtonToggle] = useState(false);
-    const [isValid, setIsValid] = useState(false);
+    const [isValid] = useState(false);
 
     function handelBtnClick() {
         setButtonToggle(true);

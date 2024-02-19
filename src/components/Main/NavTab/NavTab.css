@@ -11,7 +11,8 @@
 }
 
 
-.navtab__link {
+.navtab__li {
+    text-decoration: underline;
     font-weight: 400;
     font-size: 13px;
     line-height: 16px;
@@ -23,7 +24,7 @@
         gap: 24px;
     }
 
-    .navtab__link {
+    .navtab__li {
         font-weight: 400;
         font-size: 11px;
         line-height: 16px;
