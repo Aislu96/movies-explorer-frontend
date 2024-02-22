@@ -37,7 +37,6 @@
     line-height: 13px;
     margin: 0;
     border: none;
-    outline: none;
     padding: 0;
     text-align: left;
 }
@@ -137,13 +136,25 @@
     .profile__title {
         margin-bottom: 96px;
     }
+
+    .profile__button-edit {
+        margin-top: 24px;
+    }
 }
 
 @media screen and (max-width: 600px) {
     .profile {
         padding-top: 70px;
-        padding-bottom: 345px;
+        padding-bottom: 40px;
         max-width: 260px;
+    }
+
+    .profile__title {
+        margin-bottom: 80px;
+    }
+
+    .profile__button-edit {
+        margin-top: 193px;
     }
 
     .profile__link,

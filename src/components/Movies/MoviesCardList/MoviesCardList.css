@@ -13,19 +13,21 @@
     grid-template-columns: repeat(auto-fit, 360px);
     justify-content: center;
     gap: 58px 30px;
+    padding-bottom: 26px;
 }
 
 .movies-cards__button {
+    padding: 11px 0 9px;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 78px auto 0;
+    margin: 50px auto 0;
     border: 0;
     background-color: #F9F9F9;
     color: #000000;
     font-weight: 500;
     font-size: 12px;
-    line-height: 14.52px;
+    line-height: 15px;
     width: 320px;
     height: 36px;
     border-radius: 6px;
@@ -46,6 +48,7 @@
         margin: 0 auto;
         row-gap: 45px;
         grid-template-columns: repeat(auto-fit, 339px);
+        padding-bottom: 10px;
     }
 
     .movies-cards__button {

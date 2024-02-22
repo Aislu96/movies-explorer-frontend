@@ -1,11 +1,12 @@
-.nav-with__list {
+.navigation__list {
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 20px;
+    margin: 0;
 }
 
-.nav-with__list-text {
+.navigation__list-text {
     color: #000000;
     text-decoration: none;
     font-weight: 400;
@@ -14,19 +15,20 @@
     text-align: center;
 }
 
-.nav-with__list-text:hover {
+.navigation__list-text:hover {
     opacity: 0.7;
     cursor: pointer;
 }
 
-.nav-with__item {
+.navigation__item {
+    margin: 0;
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 13px;
 }
 
-.nav-with__item-text {
+.navigation__item-text {
     color: #000000;
     text-decoration: none;
     font-weight: 500;
@@ -35,12 +37,12 @@
     text-align: center;
 }
 
-.nav-with__item-text:hover {
+.navigation__item-text:hover {
     cursor: pointer;
     opacity: 0.7;
 }
 
-.nav-with__button {
+.navigation__logo-link {
     width: 30px;
     height: 30px;
     display: flex;
@@ -51,44 +53,60 @@
     background-color: #000000;
 }
 
-.nav-with__button_color {
+.navigation__button_color {
     background-color: #F9F9F9;
 }
-.nav-with__button:hover {
+.navigation__logo-link:hover {
     cursor: pointer;
     opacity: 0.7;
 }
 
-.nav-with__menu-button {
+.navigation__menu-button {
     display: none;
+    width: 44px;
+    height: 44px;
+    gap: 50px;
 }
 
-.nav-with__menu-button:hover {
+.navigation__menu-button:hover {
     opacity: 0.7;
     cursor: pointer;
 }
 
-.nav-with__logo {
+.nnavigation__logo {
     width: 10.38px;
     height: 10.67px;
 }
 
 @media screen and (max-width: 800px) {
-    .nav-with__list {
+    .navigation__list {
         display: none;
     }
 
-    .nav-with__item {
+    .navigation__item {
         display: none;
     }
 
-    .nav-with__menu-button {
+    .navigation__menu-button {
         display: flex;
         background-color: #F3C1F8;
         border: none;
         padding: 0;
     }
-    .nav-with__menu-button_color {
+    .navigation__menu-button_color {
        background-color: #FFFFFF;
     }
+
+    .navigation__menu-img {
+        width: 40px;
+        height: 43px;
+    }
+}
+
+@media  screen and (max-width: 400px){
+    .navigation__menu-button {
+        width: 40px;
+        height: 43px;
+    }
+
 }

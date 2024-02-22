@@ -65,7 +65,8 @@ function Profile() {
                     </>
                 ) : (
                     <>
-                        <button type="submit" className="profile__button-edit" onClick={handelBtnClick}>Редактировать
+                        <button type="submit" className="profile__button-edit"
+                                onClick={handelBtnClick}>Редактировать
                         </button>
                         <Link to={'/signin'} className="profile__link">Выйти из аккаунта</Link>
                     </>

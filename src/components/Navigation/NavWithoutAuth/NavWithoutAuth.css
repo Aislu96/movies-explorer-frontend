@@ -1,17 +1,14 @@
-.nav-without__text {
+.navigation__text {
     color: #000000;
     text-decoration: none;
     font-weight: 500;
     font-size: 12px;
     line-height: 16px;
     text-align: center;
+    width: 77px;
 }
 
-.nav-without__list {
-    margin: 0;
-}
-
-.nav-without__button {
+.navigation__btn {
     color: #FFFFFF;
     text-decoration: none;
     background-color: #000000;
@@ -24,14 +21,18 @@
     font-size: 12px;
     line-height: 16px;
     border-radius: 3px;
+    border: none;
+    padding: 0;
 }
 
 @media screen and (max-width: 400px) {
-    .nav-without__text {
+    .navigation__text {
         font-size: 10px;
+        text-align: center;
+        width: 64px;
     }
 
-    .nav-without__button {
+    .navigation__btn {
         font-size: 10px;
         width: 54px;
         height: 26px;

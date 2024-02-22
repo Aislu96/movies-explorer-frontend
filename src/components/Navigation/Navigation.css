@@ -1,8 +1,13 @@
 .navigation {
     display: flex;
     justify-content: space-between;
+    flex-direction: row;
     align-items: center;
     gap: 30px;
+}
+
+.navigation__gap {
+    gap: 50px;
 }
 
 @media screen and (max-width: 400px) {

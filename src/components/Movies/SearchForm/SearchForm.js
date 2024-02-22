@@ -16,7 +16,7 @@ function SearchFrom() {
 
     return (
         <section className="search-form">
-            <form name="movies" className="search-from__container" onSubmit={handleSubmit}>
+            <form name="movies" className="search-form__container" onSubmit={handleSubmit}>
                 <label className="search-form__label">
                     <img alt="Изображение иконки найти" src={iconFind} className="search-form__img"/>
                     <input name="movies" type="text" className="search-form__input" placeholder="Фильм"
@@ -27,7 +27,6 @@ function SearchFrom() {
                 </label>
                 <Preloader/>
             </form>
-            <div className="search-form__line"></div>
         </section>
     );
 }

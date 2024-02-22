@@ -57,15 +57,28 @@
     line-height: 18px;
 }
 
+@media screen and (max-width: 800px) {
+    .container {
+        margin-left: 19px;
+        gap: 17px;
+    }
+
+    .text {
+        width: 117px;
+    }
+}
+
 
 @media screen and (max-width: 600px) {
     .container {
         display: flex;
         justify-content: center;
         margin: 46px auto 0;
+        gap: 14px;
     }
 
     .text {
         font-size: 11px;
+        width: 99px;
     }
 }

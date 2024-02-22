@@ -5,10 +5,10 @@ import NavWithAuth from "./NavWithAuth/NavWithAuth";
 
 function Navigation({loggedIn, onBtnClick, setMenuToggle, colorAuth, colorBurger, logoButtonBlack}) {
     return (
-        <nav className="navigation">
+        <nav className={loggedIn? "navigation navigation__gap" : "navigation"}>
             {loggedIn ? (
                 <NavWithAuth setMenuToggle={setMenuToggle} onBtnClick={onBtnClick} colorAuth={colorAuth}
-                             colorBurger={colorBurger} logoButtonBlack={logoButtonBlack}/>) : (
+                                      colorBurger={colorBurger} logoButtonBlack={logoButtonBlack}/>) : (
                 <NavWithoutAuth/>)}
         </nav>
     );

@@ -27,13 +27,14 @@ function Login() {
 
     return (
         <Auth title={"Рады видеть!"} name={"form-login"} button={"Войти"} authText={"Ещё не зарегистрированы? "}
-              authTextLink={"Регистрация"} handleSubmit={handleSubmit} to={"/signup"} classButton={"auth__button_login"}>
+              authTextLink={"Регистрация"} handleSubmit={handleSubmit} to={"/signup"}
+              classButton={"auth__button_login"}>
             <Input subtitle={"E-mail"} name={"email"} type={"email"} placeholder={"E-mail"}
                    handleValues={handleValues} value={values.email} error={errors.email}
-                   id={"email-error"}/>
+                   id={"email-error"} classError={errors.email && "auth__error-span_pad"}/>
             <Input subtitle={"Пароль"} name={"password"} type={"password"} placeholder={"Пароль"}
-                   handleValues={handleValues} value={values.password} error={errors.password}
-                   id={"password-error"}/>
+                   handleValues={handleValues} classError={errors.password && "auth__error-span_pad"}
+                   value={values.password} error={errors.password}/>
         </Auth>
     );
 }

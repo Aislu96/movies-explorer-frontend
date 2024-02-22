@@ -10,14 +10,15 @@ function MoviesCardList({moviesList, value}) {
     }
 
     return (
-        <section className="movies-cards">
-            <div className="movies-cards__container">
-                {moviesList.slice(0, count).map((movie, id) => (
-                    <MoviesCard movie={movie} key={id} value={value}/>
-                ))}
-            </div>
-            {value? <button type="submit" className="movies-cards__button" onClick={handelClickIncrease}>Ещё</button> : ''}
-        </section>
+            <section className="movies-cards">
+                <div className="movies-cards__container">
+                    {moviesList.slice(0, count).map((movie, id) => (
+                        <MoviesCard movie={movie} key={id} value={value}/>
+                    ))}
+                </div>
+                {value ? <button type="submit" className="movies-cards__button"
+                                 onClick={handelClickIncrease}>Ещё</button> : ''}
+            </section>
     );
 }
 

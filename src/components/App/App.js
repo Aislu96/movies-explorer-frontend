@@ -31,46 +31,47 @@ function App() {
 
     return (
         <div className="App">
-            <Routes>
-                <Route path="/" element={
-                    <>
-                        <Header classColor={"header__color-pink"} loggedIn={true}/>
-                        <Main/>
-                        <Footer/>
-                    </>
-                }
-                />
-                <Route path="/movies" element={
-                    <>
-                        <Header colorAuth={"nav-with__button_color"} colorBurger={"nav-with__menu-button_color"}
-                                logoButtonBlack={logoAuthBlack} loggedIn={true}/>
-                        <Movies moviesList={moviesList}/>
-                        <Footer/>
-                    </>
-                }
-                />
-                <Route path="/saved-movies" element={
-                    <>
-                        <Header colorAuth={"nav-with__button_color"} colorBurger={"nav-with__menu-button_color"}
-                                logoButtonBlack={logoAuthBlack} loggedIn={true}/>
-                        <SavedMovies moviesSave={moviesSave}/>
-                        <Footer/>
-                    </>
-                }/>
-                <Route path="/profile" element={
-                    <>
-                        <Header colorAuth={"nav-with__button_color"} colorBurger={"nav-with__menu-button_color"}
-                                logoButtonBlack={logoAuthBlack} loggedIn={true}/>
-                        <Profile/>
-                    </>
-                }/>
-                <Route path="/signin" element={<Login/>}/>
-                <Route path="/signup" element={<Register/>}/>
-                <Route path="*" element={<NotFoundPage/>}/>
-            </Routes>
+            <div className="page">
+                <Routes>
+                    <Route path="/" element={
+                        <>
+                            <Header classColor={"color"} loggedIn={true}/>
+                            <Main/>
+                            <Footer/>
+                        </>
+                    }
+                    />
+                    <Route path="/movies" element={
+                        <>
+                            <Header colorAuth={"navigation__button_color"} colorBurger={"navigation__menu-button_color"}
+                                    logoButtonBlack={logoAuthBlack} loggedIn={true}/>
+                            <Movies moviesList={moviesList}/>
+                            <Footer/>
+                        </>
+                    }
+                    />
+                    <Route path="/saved-movies" element={
+                        <>
+                            <Header colorAuth={"navigation__button_color"} colorBurger={"navigation__menu-button_color"}
+                                    logoButtonBlack={logoAuthBlack} loggedIn={false}/>
+                            <SavedMovies moviesSave={moviesSave}/>
+                            <Footer/>
+                        </>
+                    }/>
+                    <Route path="/profile" element={
+                        <>
+                            <Header colorAuth={"nav-with__button_color"} colorBurger={"nav-with__menu-button_color"}
+                                    logoButtonBlack={logoAuthBlack} loggedIn={false}/>
+                            <Profile/>
+                        </>
+                    }/>
+                    <Route path="/signin" element={<Login/>}/>
+                    <Route path="/signup" element={<Register/>}/>
+                    <Route path="*" element={<NotFoundPage/>}/>
+                </Routes>
+            </div>
         </div>
     )
 }
-
 
 export default App;
