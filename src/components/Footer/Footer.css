@@ -76,7 +76,8 @@
     }
 
     .footer__text_paragraph {
-        padding-bottom: 30px;
+        padding-bottom: 21px;
+        margin-bottom: 30px;
     }
 }
 

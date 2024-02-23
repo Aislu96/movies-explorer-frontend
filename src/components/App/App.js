@@ -60,13 +60,17 @@ function App() {
                     }/>
                     <Route path="/profile" element={
                         <>
-                            <Header colorAuth={"nav-with__button_color"} colorBurger={"nav-with__menu-button_color"}
-                                    logoButtonBlack={logoAuthBlack} loggedIn={false}/>
+                            <Header colorAuth={"navigation__button_color"} colorBurger={"navigation__menu-button_color"}
+                                    logoButtonBlack={logoAuthBlack} loggedIn={true}/>
                             <Profile/>
                         </>
                     }/>
                     <Route path="/signin" element={<Login/>}/>
-                    <Route path="/signup" element={<Register/>}/>
+                    <Route path="/signup" element={
+                        <>
+                            <Register/>
+                        </>
+                    }/>
                     <Route path="*" element={<NotFoundPage/>}/>
                 </Routes>
             </div>

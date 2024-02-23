@@ -33,9 +33,9 @@ function Profile() {
 
     return (
         <section className="profile">
-            <h1 className="profile__title">Привет, {values.name || "Айсылу"}!</h1>
+            <h1 className="profile__title">Привет, {values.name || "Виталий"}!</h1>
             <form className="profile__form" name="form-profile" onSubmit={handleSubmit} noValidate>
-                <label className="profile__label">
+                <label className="profile__label profile__label_line ">
                     <p className="profile__subtitle">Имя</p>
                     <input name="name" className="profile__subtitle profile__subtitle_input" type="text"
                            placeholder="Имя" minLength="2"
@@ -43,7 +43,6 @@ function Profile() {
                            onChange={handleValues}
                            value={values.name ? values.name : ""} required/>
                 </label>
-                <div className="profile__line"></div>
                 <label className="profile__label">
                     <p className="profile__subtitle">E-mail</p>
                     <input name="email" className="profile__subtitle profile__subtitle_input" type="email"

@@ -45,10 +45,11 @@
     text-align: right;
 }
 
-.profile__line {
+.profile__label_line {
     border-bottom: 1px solid #E8E8E8;
-    margin: 16px 0 17px;
+    padding-bottom: 16px;
     width: 100%;
+    margin-bottom: 17px;
 }
 
 .profile__item {
@@ -126,7 +127,6 @@
     text-align: center;
 }
 
-
 @media screen and (max-width: 800px) {
     .profile {
         padding-top: 236px;
@@ -162,6 +162,10 @@
     .profile__button-save {
         font-size: 12px;
         line-height: 15px;
+    }
+
+    .profile__label_line {
+        margin-bottom: 19px;
     }
 
 }

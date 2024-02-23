@@ -1,6 +1,5 @@
 .search-form {
     max-width: 1140px;
-    width: 100%;
     margin: 70px 70px 10px;
     box-sizing: border-box;
     border-bottom: 1px solid #E8E8E8;
@@ -69,25 +68,29 @@
 
 @media screen and (max-width: 800px ) {
     .search-form {
-        max-width: 708px;
         margin: 80px 30px 10px;
         box-sizing: border-box;
         border-bottom: 1px solid #E8E8E8;
         padding-bottom: 109px;
     }
 
-    .search-from__container {
+    .search-form__container {
         height: 72px;
         padding: 19px 20px 19px 19px;
     }
 
-    .search-form__button {
+    .search-form__input {
+        width: 73%;
+    }
+    .search-form__label {
+        padding-left: 3px;
     }
 }
 
 
 @media screen and (max-width: 600px) {
     .search-form {
+        width: 100%;
         margin: 80px 0 10px;
         padding-right: 10px;
         padding-left: 10px;
