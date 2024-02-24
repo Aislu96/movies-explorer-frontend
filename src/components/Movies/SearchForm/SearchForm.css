@@ -43,7 +43,7 @@
 }
 
 .search-form__input {
-    outline: none;
+    outline-color: #E8E8E8;
     border: none;
     padding: 0;
     width: 85%;

@@ -43,7 +43,7 @@ function App() {
                     />
                     <Route path="/movies" element={
                         <>
-                            <Header colorAuth={"navigation__button_color"} colorBurger={"navigation__menu-button_color"}
+                            <Header colorAuth={"navigation__button-color"} colorBurger={"navigation__menu-button_color"}
                                     logoButtonBlack={logoAuthBlack} loggedIn={true}/>
                             <Movies moviesList={moviesList}/>
                             <Footer/>
@@ -52,7 +52,7 @@ function App() {
                     />
                     <Route path="/saved-movies" element={
                         <>
-                            <Header colorAuth={"navigation__button_color"} colorBurger={"navigation__menu-button_color"}
+                            <Header colorAuth={"navigation__button-color"} colorBurger={"navigation__menu-button_color"}
                                     logoButtonBlack={logoAuthBlack} loggedIn={false}/>
                             <SavedMovies moviesSave={moviesSave}/>
                             <Footer/>
@@ -60,17 +60,13 @@ function App() {
                     }/>
                     <Route path="/profile" element={
                         <>
-                            <Header colorAuth={"navigation__button_color"} colorBurger={"navigation__menu-button_color"}
+                            <Header colorAuth={"navigation__button-color"} colorBurger={"navigation__menu-button_color"}
                                     logoButtonBlack={logoAuthBlack} loggedIn={true}/>
                             <Profile/>
                         </>
                     }/>
                     <Route path="/signin" element={<Login/>}/>
-                    <Route path="/signup" element={
-                        <>
-                            <Register/>
-                        </>
-                    }/>
+                    <Route path="/signup" element={<Register/>}/>
                     <Route path="*" element={<NotFoundPage/>}/>
                 </Routes>
             </div>

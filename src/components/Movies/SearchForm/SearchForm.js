@@ -17,14 +17,14 @@ function SearchFrom() {
     return (
         <section className="search-form">
             <form name="movies" className="search-form__container" onSubmit={handleSubmit}>
-                <label className="search-form__label">
+                <div className="search-form__label">
                     <img alt="Изображение иконки найти" src={iconFind} className="search-form__img"/>
                     <input name="movies" type="text" className="search-form__input" placeholder="Фильм"
                            onChange={handleValues}
                            value={values.movies ? values.movies : ""}
                            required/>
                     <button className="search-form__button" type="submit">Найти</button>
-                </label>
+                </div>
                 <Preloader/>
             </form>
         </section>
