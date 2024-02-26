@@ -7,7 +7,7 @@ function MoviesCard({movie, value, key}) {
     const [active, SetActive] = useState(false);
     const moviesUrl = "https://api.nomoreparties.co/";
     const imageUrl = movie.image.formats.thumbnail.url;
-    const classButton = active ? "move__button_check-mark" : "movie__button_save";
+    const classButton = active ? "movie__button_check-mark" : "movie__button_save";
     let hours = Math.trunc(movie.duration / 60);
     let minutes = movie.duration % 60;
 
