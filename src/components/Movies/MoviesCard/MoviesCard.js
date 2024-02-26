@@ -21,7 +21,7 @@ function MoviesCard({movie, value, key}) {
             {value ?
                 <button className={`movie__button ${classButton}`} onClick={handleClick}>{active ?
                     <img className="movie__button-img" alt='Иконка галочки' src={checkMark}/> : "Сохранить"}</button>
-                : <button className="movie__button move__button_check-mark">
+                : <button className="movie__button movie__button_check-mark">
                     <img className="movie__button-img" alt='Иконка удаления' src={iconDelete}/>
                 </button>}
 
