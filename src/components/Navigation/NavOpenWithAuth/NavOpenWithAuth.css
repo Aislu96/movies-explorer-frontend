@@ -1,0 +1,136 @@
+.nav-open {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    top: 0;
+    right: 0;
+    z-index: 2;
+    flex-direction: column;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+}
+.nav-open__link {
+    text-align: center;
+}
+
+.nav-open__body {
+    padding: 22.44px 22.44px 92px;
+    width: 100%;
+    max-width: 520px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    background-color: #FFFFFF;
+    z-index: 3;
+    gap: 105.44px;
+}
+
+.nav-open__button-close {
+    padding: 0;
+    background-color: rgba(0, 0, 0, 0);
+    display: block;
+    border: none;
+    width: 32px;
+    height: 32px;
+    align-self: flex-end;
+    transition: 0.3s ease-in-out;
+}
+
+.nav-open__button-close:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+.nav-open__block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    padding-left: 0;
+}
+
+.nav-open__list {
+    gap: 28px;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto 621px;
+}
+
+.nav-open__list-text {
+    margin: 0 auto;
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: center;
+    color: #000000;
+}
+
+.nav-open__list-text:hover {
+    border-bottom: 1px solid #000000;
+    padding-bottom: 4px;
+    cursor: pointer;
+}
+
+.nav-open__item {
+    display: flex;
+    flex-direction: row;
+    gap: 13px;
+    align-items: center;
+    margin: 0;
+}
+
+.nav-open__item-text {
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 16px;
+    text-align: center;
+    color: #000000;
+}
+
+.nav-open__logo {
+    width: 10.38px;
+    height: 10.67px;
+}
+
+.nav-open__logo-link {
+    border-radius: 6px;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    background-color:#FFFFFF;
+}
+
+.nav-open__logo-link:hover {
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+.nav-open_popup {
+    visibility: visible;
+    opacity: 1;
+}
+
+@media screen and (max-width: 400px) {
+    .nav-open__list {
+        gap: 24px;
+        margin-bottom: 444px;
+    }
+
+    .nav-open__body {
+        padding: 13.44px 13.44px 48px;
+        gap: 99.44px;
+    }
+
+}

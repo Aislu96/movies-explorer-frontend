@@ -1,0 +1,49 @@
+.auth__label {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.auth__subtitle {
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 12px;
+    text-align: left;
+    color: #A0A0A0;
+    margin: 0 0 10px;
+}
+
+.input {
+    border: none;
+    border-radius: 8px;
+    color: #000000;
+    height: 46px;
+    padding: 15px;
+    width: 100%;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 15.73px;
+    background-color: #F9F9F9;
+    box-sizing: border-box;
+}
+
+.auth__error-span {
+    color: #FF4062;
+    font-size: 10px;
+    font-weight: 400;
+    min-height: 12px;
+    padding-top: 8px;
+    line-height: 12px;
+    width: 100%;
+}
+
+.auth__error {
+    color: #FF4062;
+}
+
+.auth__error-span_pad {
+    padding-top: 10px;
+}

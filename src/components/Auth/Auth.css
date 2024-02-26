@@ -1,0 +1,150 @@
+.auth {
+    max-width: 396px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 70px;
+    padding-bottom: 70px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    background-color: #FFFFFF;
+}
+
+.auth__logo-link {
+    width: 38px;
+    height: 38px;
+    margin: 0 auto 0 0;
+}
+
+.auth__logo-link:hover {
+    cursor: pointer;
+    opacity: 0.7;
+}
+
+.auth__title {
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 29px;
+    text-align: left;
+    color: #000000;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.auth__form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+
+.auth__button {
+    color: #FFFFFF;
+    border-radius: 3px;
+    width: 100%;
+    min-height: 45px;
+    border: none;
+    background-color: #000000;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+.auth__button:hover {
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+.auth__button_login {
+    margin: 159px auto 0;
+}
+
+.auth__button_register {
+    margin: 69px auto 0;
+}
+
+.auth__text {
+    color: #A0A0A0;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    margin-top: 16px;
+    margin-bottom: 0;
+    text-align: center;
+}
+
+.auth__text-link {
+    color: #000000;
+    text-decoration: none;
+}
+
+.auth__text-link:hover {
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 800px) {
+    .auth {
+        padding-top: 232px;
+        padding-bottom: 232px;
+    }
+
+    .auth__title {
+        font-weight: 500;
+    }
+
+    .auth__button {
+        font-weight: 400;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .auth {
+        padding-top: 56px;
+        padding-bottom: 30px;
+        max-width: 260px;
+        max-height: 780px;
+    }
+
+    .auth__logo {
+        margin: 0 auto;
+        display: block;
+    }
+
+    .auth__title {
+        text-align: center;
+        margin-top: 50px;
+        margin-bottom: 80px;
+    }
+
+    .auth__button {
+        font-size: 12px;
+        line-height: 15px;
+    }
+
+    .auth__button_register {
+        margin-top: 157px;
+    }
+
+    .auth__button_login {
+        margin-top: 247px;
+    }
+
+    .auth__text {
+        font-size: 12px;
+        line-height: 15px;
+        margin-top: 14px;
+    }
+
+    .auth__logo-link {
+        margin-left: auto;
+    }
+}
