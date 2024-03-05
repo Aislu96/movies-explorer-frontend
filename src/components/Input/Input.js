@@ -2,16 +2,17 @@ import React from "react";
 import './Input.css';
 
 
-function Input({subtitle, name, type, placeholder, handleValues, value, error, id, classError}) {
+function Input({subtitle, name, type, placeholder, handleChange, value, error, id, classError, isValid, minLength}) {
     return (
         <div className="auth__label">
             <p className="auth__subtitle">{subtitle}</p>
-            <input name={name} className="input auth__error" type={type}
-                   placeholder={placeholder} minLength="2"
+            <input id={name} name={name} className={isValid ? "input" : "input auth__error"} type={type}
+                   placeholder={placeholder} minLength={minLength || "2"}
                    maxLength="30"
-                   onChange={handleValues}
+                   onChange={handleChange}
                    value={value ? value : ""} required/>
-            <span id={id} className={`auth__error-span ${classError}`}>{error || ''}</span>
+            <span id={id}
+                  className={isValid ? "auth__error-span" : `auth__error-span ${classError}`}>{error || ''}</span>
         </div>
     );
 }

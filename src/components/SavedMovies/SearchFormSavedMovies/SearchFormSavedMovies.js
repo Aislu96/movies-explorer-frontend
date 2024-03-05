@@ -1,10 +1,10 @@
 import React from "react";
-import "./SearchForm.css";
+import "../../Movies/SearchForm/SearchForm.css";
 import Checked from "../../Checked/Checked";
 import iconFind from "../../../images/find.svg";
 import useFormValidation from "../../../hooks/useFormValidation";
 
-function SearchFrom({onChangeChecked, checked, onSearchMovies}) {
+function SearchFormSavedMovies({onChangeChecked, checked, onSearchMovies}) {
     const {values, errors, handleChange, setValues, resetValidation} = useFormValidation({});
 
     React.useEffect(() => {
@@ -31,9 +31,10 @@ function SearchFrom({onChangeChecked, checked, onSearchMovies}) {
                 </div>
                 <Checked checked={checked} onChangeChecked={onChangeChecked}/>
             </form>
-            <div id="movies-error" className={errors.movies && "search-form__error"}>{errors.movies? "Нужно ввести ключевое слово" : ''}</div>
+            <div id="movies-error"
+                 className={errors.movies && "search-form__error"}>{errors.movies ? "Нужно ввести ключевое слово" : ''}</div>
         </section>
     );
 }
 
-export default SearchFrom;
+export default SearchFormSavedMovies;

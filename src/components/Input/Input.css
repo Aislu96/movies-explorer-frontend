@@ -40,6 +40,17 @@
     width: 100%;
 }
 
+.auth__error-message {
+    margin: 0 auto;
+    height: 14px;
+    color: #FF004C;
+    width: 100%;
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 14px;
+    text-align: center;
+}
+
 .auth__error {
     color: #FF4062;
 }

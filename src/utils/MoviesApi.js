@@ -1,4 +1,4 @@
-class Api {
+class MoviesApi {
     #url;
     #headers;
 
@@ -26,7 +26,7 @@ class Api {
     }
 }
 
-const api = new Api({
+const moviesApi = new MoviesApi({
         url: "https://api.nomoreparties.co/beatfilm-movies",
         headers: {
             'Content-Type': "application/json"
@@ -34,4 +34,4 @@ const api = new Api({
     }
 );
 
-export default api;
+export default moviesApi;
