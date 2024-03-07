@@ -20,7 +20,6 @@ const MOVIES_CARD_8 = 8;
 const MOVIES_CARD_5 = 5;
 const MOVIES_CARD_2 = 2;
 
-
 export {
     NAME_PATTERN,
     EMAIL_PATTERN,

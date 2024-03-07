@@ -25,31 +25,29 @@ import {
 } from "../../utils/constants";
 
 function App() {
-   const loggedInSave = JSON.parse(localStorage.getItem('loggedIn'))
+    const loggedInSave = JSON.parse(localStorage.getItem('loggedIn'))
     const [errorMessage, setErrorMessage] = useState("");
     const [moviesList, setMoviesList] = useState([]);
     const [cardsMoviesSave, setCardsMoviesSave] = useState([]);
     const [currentUser, setCurrentUser] = useState([{email: '', name: '', _id: ''}]);
-    const [loggedIn, setLoggedIn] = useState(  loggedInSave || false);
+    const [loggedIn, setLoggedIn] = useState(loggedInSave || false);
     const [preloader, setPreloader] = useState(false);
     const navigate = useNavigate();
 
 
     useEffect(() => {
-        // if (loggedIn) {
-            setPreloader(true);
-            mainApi.getUser().then(data => {
-                setLoggedIn(true);
-                localStorage.setItem('loggedIn', JSON.stringify(true));
-                setCurrentUser(data);
+        setPreloader(true);
+        mainApi.getUser().then(data => {
+            setLoggedIn(true);
+            localStorage.setItem('loggedIn', JSON.stringify(true));
+            setCurrentUser(data);
+        })
+            .catch((error) => {
+                console.log(error);
             })
-                .catch((error) => {
-                    console.log(error);
-                })
-                .finally(() => {
-                    setPreloader(false);
-                });
-        // }
+            .finally(() => {
+                setPreloader(false);
+            });
     }, [loggedIn])
 
     useEffect(() => {
@@ -66,6 +64,7 @@ function App() {
                 });
         }
     }, [loggedIn]);
+
     useEffect(() => {
         tokenCheck();
     }, []);
@@ -239,6 +238,7 @@ function App() {
                             <Header colorAuth={"navigation__button-color"} colorBurger={"navigation__menu-button_color"}
                                     logoButtonBlack={logoAuthBlack} loggedIn={loggedIn}/>
                             <ProtectedRoute loggedIn={loggedIn} moviesList={cardsMoviesSave}
+                                            cardsMoviesSave={cardsMoviesSave}
                                             onClickDeleteFilm={handelDeleteMovie}
                                             element={SavedMovies}
                             />

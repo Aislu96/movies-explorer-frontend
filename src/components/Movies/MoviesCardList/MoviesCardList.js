@@ -42,7 +42,7 @@ function MoviesCardList({cardsMoviesSave, moviesFilter, value, onClickSaveFilm, 
     function getPagesMovie() {
         return moviesFilter.slice(0, countMoviesCard).map(movie => (
             <MoviesCard
-                key={movie.id}
+                key={movie._id}
                 movie={movie} value={value}
                 onClickSaveFilm={onClickSaveFilm}
                 onClickDeleteFilm={onClickDeleteFilm}
@@ -58,7 +58,7 @@ function MoviesCardList({cardsMoviesSave, moviesFilter, value, onClickSaveFilm, 
                 const likedMovieId = likedMovie ? likedMovie._id : null;
                 return (<MoviesCard
                     key={movie.id}
-                    movie={{...movie, _id: likedMovieId}} value={value}
+                    movie={{...movie, _id: likedMovieId || movie._id}} value={value}
                     onClickSaveFilm={onClickSaveFilm}
                     onClickDeleteFilm={onClickDeleteFilm}
                     liked={likedMovie ? true : false}
@@ -74,7 +74,7 @@ function MoviesCardList({cardsMoviesSave, moviesFilter, value, onClickSaveFilm, 
                     {cardsMoviesSave ? getPagesMovieSave() : getPagesMovie()}
                 </div>
             ) : <div className="movies-cards__text">{ERROR_NOT_FOUND}</div>}
-            {moviesFilter.length !== 0 && isLoading ? (<button type="submit" className="movies-cards__button"
+            {value && moviesFilter.length !== 0 && isLoading ? (<button type="submit" className="movies-cards__button"
                                                                onClick={handelClickIncrease}>Ещё</button>) : ''
             }
         </section>
