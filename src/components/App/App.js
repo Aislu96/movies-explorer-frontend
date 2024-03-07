@@ -111,7 +111,6 @@ function App() {
             })
             .finally(() => {
                 setPreloader(false);
-                setErrorMessage('');
             });
     }
 
