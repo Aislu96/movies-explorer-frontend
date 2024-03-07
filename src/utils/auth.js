@@ -1,4 +1,5 @@
-export const BASE_URL = 'https://api.movies.kharisova.nomoredomainsmonster.ru';
+import {BASE_URL} from "./constants";
+
 
 export const register = (email, password, name) => {
     return fetch(`${BASE_URL}/signup`, {

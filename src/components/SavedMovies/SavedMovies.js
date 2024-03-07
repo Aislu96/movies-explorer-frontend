@@ -1,54 +1,21 @@
-import React, {useEffect, useState} from "react";
-import SearchFormSavedMovies from "./SearchFormSavedMovies/SearchFormSavedMovies";
-import MoviesCardListSavedMovies
-    from "../../components/SavedMovies/MoviesCardListSavedMovies/MoviesCardListSavedMovies";
-
-function SavedMovies({onClickDeleteFilm, cardsMoviesSave, currentUser}) {
-    const [search, setSearch] = useState('')
-    const [checkedSavedMovies, setCheckedSavedMovies] = useState(true);
-    const [moviesFilterSavedMovies, setMoviesFilterSavedMovies] = useState([]);
-
-    useEffect(() => {
-        if (!checkedSavedMovies) {
-            const filter = cardsMoviesSave.filter((item) => item.duration < 40);
-            setMoviesFilterSavedMovies(filter);
-        }
-    }, [checkedSavedMovies, cardsMoviesSave]);
-
-    function filterFilms(value) {
-        return cardsMoviesSave.filter((item) => {
-            const strRu = String(item.nameRU).toLowerCase();
-            const strEn = String(item.nameEN).toLowerCase();
-            const filmSearchQueryStr = value.toLowerCase().trim();
-            return (strRu.indexOf(filmSearchQueryStr) !== -1 || strEn.indexOf(filmSearchQueryStr) !== -1);
-        });
-    }
-
-    function handelSearchSavedMovies(value) {
-        if (!checkedSavedMovies) {
-            const filter = cardsMoviesSave.filter((item) => item.duration < 52);
-            setMoviesFilterSavedMovies(filter);
-            setSearch(value)
-        } else {
-            const filter = filterFilms(value);
-            setSearch(value)
-            setMoviesFilterSavedMovies(filter)
-        }
-    }
+import React, {useState} from "react";
+import SearchForm from "../Movies/SearchForm/SearchForm";
+import MoviesCardList from "../Movies/MoviesCardList/MoviesCardList";
+import {MOVIES_SHORTS_DURATION} from "../../utils/constants";
 
 
-    function handleChangeCheckedSavedMovies() {
-        setCheckedSavedMovies(!checkedSavedMovies);
-    }
+function SavedMovies({moviesList, onClickSaveFilm, onClickDeleteFilm, cardsMoviesSave}) {
+
 
     return (
-        <>
-            <SearchFormSavedMovies checked={checkedSavedMovies} onSearchMovies={handelSearchSavedMovies}
-                                   onChangeChecked={handleChangeCheckedSavedMovies}/>
-            <MoviesCardListSavedMovies search={search} currentUser={currentUser} cardsMoviesSave={cardsMoviesSave}
-                                       moviesFilter={moviesFilterSavedMovies} value={false}
-                                       onClickDeleteFilm={onClickDeleteFilm}/>
-        </>
+        <main className="movies">
+            <SearchForm checked={checked} onSearchMovies={handelSearchMovies}
+                        onChangeChecked={handleChangeChecked}
+            />
+            <MoviesCardList cardsMoviesSave={cardsMoviesSave} moviesFilter={moviesFilter}
+                            value={false} onClickSaveFilm={onClickSaveFilm}
+                            onClickDeleteFilm={onClickDeleteFilm}/>
+        </main>
     );
 }
 

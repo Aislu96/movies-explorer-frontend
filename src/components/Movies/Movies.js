@@ -1,69 +1,50 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import SearchForm from "./SearchForm/SearchForm";
 import MoviesCardList from "./MoviesCardList/MoviesCardList";
+import {MOVIES_SHORTS_DURATION} from "../../utils/constants";
 
 
-function Movies({currentUser, moviesList, onClickSaveFilm, onClickDeleteFilm, cardsMoviesSave}) {
-    const [checked, setChecked] = useState(true);
-    const [moviesFilter, setMoviesFilter] = useState([]);
-    const [filmSearchQuery, setFilmSearchQuery] = useState('');
+function Movies({moviesList, onClickSaveFilm, onClickDeleteFilm, cardsMoviesSave}) {
+    const filmSearchQuerySave = JSON.parse(localStorage.getItem('filmSearchQuery'));
+    const moviesFilterSave = JSON.parse(localStorage.getItem('moviesFilter'));
+    const checkedSave = JSON.parse(localStorage.getItem('checked'));
+    const checkedItem = checkedSave? true: false;
+    const [checked, setChecked] = useState( checkedItem);
+    const [moviesFilter, setMoviesFilter] = useState( moviesFilterSave || []);
+    const [filmSearchQuery, setFilmSearchQuery] = useState(filmSearchQuerySave || '');
 
-    const filterFilms = React.useCallback((value) => {
+    const filterFilms = (value) => {
         return moviesList.filter((item) => {
             const strRu = String(item.nameRU).toLowerCase();
             const strEn = String(item.nameEN).toLowerCase();
             const filmSearchQueryStr = value.toLowerCase().trim();
             setFilmSearchQuery(value);
-            localStorage.setItem('filmSearchQuery', JSON.stringify(value));
             return (strRu.indexOf(filmSearchQueryStr) !== -1 || strEn.indexOf(filmSearchQueryStr) !== -1);
         });
-    }, [setFilmSearchQuery,moviesList])
+    }
 
-    useEffect(() => {
-        if (!checked) {
-            const shortFilms = moviesFilter.filter((item) => item.duration < 52);
-            setMoviesFilter(shortFilms);
-        } else {
-            const filter = filterFilms(filmSearchQuery)
-            setMoviesFilter(filter);
-        }
-    }, [checked, setMoviesFilter, moviesFilter, filterFilms, filmSearchQuery]);
-
-    function handelSearchMovies(value) {
-        localStorage.setItem('checked', JSON.stringify(checked));
-        if (!checked) {
+    function handelSearchMovies(value, item) {
+        if ((!item && item !== undefined)) {
+            localStorage.setItem('checked', JSON.stringify(item));
             const filter = filterFilms(value);
-            const shortFilms = filter.filter((item) => item.duration < 40);
+            const shortFilms = filter.filter((item) => item.duration < MOVIES_SHORTS_DURATION);
             setMoviesFilter(shortFilms);
-            localStorage.setItem('filmSearchQuery', JSON.stringify(value));
             localStorage.setItem('moviesFilter', JSON.stringify(shortFilms));
         } else {
+            localStorage.setItem('checked', JSON.stringify(true));
             setFilmSearchQuery(value);
             const filter = filterFilms(value);
             setMoviesFilter(filter);
-            localStorage.setItem('filmSearchQuery', JSON.stringify(value));
             localStorage.setItem('moviesFilter', JSON.stringify(filter));
         }
+        localStorage.setItem('filmSearchQuery', JSON.stringify(value));
     }
 
 
     function handleChangeChecked() {
         setChecked(!checked);
-        localStorage.setItem('checked', JSON.stringify(checked));
+        handelSearchMovies(filmSearchQuery, !checked);
     }
-
-    useEffect(() => {
-        const checked = JSON.parse(localStorage.getItem('checked'));
-        setChecked(checked);
-        const moviesFilter = JSON.parse(localStorage.getItem('moviesFilter'));
-        if (null === moviesFilter) {
-            setMoviesFilter([]);
-        } else {
-            setMoviesFilter(moviesFilter);
-        }
-        const filmSearchQuery = JSON.parse(localStorage.getItem('filmSearchQuery'));
-        setFilmSearchQuery(filmSearchQuery);
-    }, [setFilmSearchQuery, setMoviesFilter, setChecked]);
 
 
     return (
@@ -71,7 +52,7 @@ function Movies({currentUser, moviesList, onClickSaveFilm, onClickDeleteFilm, ca
             <SearchForm checked={checked} onSearchMovies={handelSearchMovies}
                         onChangeChecked={handleChangeChecked}
             />
-            <MoviesCardList currentUser={currentUser} cardsMoviesSave={cardsMoviesSave} moviesFilter={moviesFilter}
+            <MoviesCardList cardsMoviesSave={cardsMoviesSave} moviesFilter={moviesFilter}
                             value={true} onClickSaveFilm={onClickSaveFilm}
                             onClickDeleteFilm={onClickDeleteFilm}/>
         </main>

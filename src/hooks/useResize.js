@@ -1,17 +1,18 @@
-
 import {useState, useEffect, useCallback} from 'react';
+import {WIDTH_SCREEN_600, WIDTH_SCREEN_800} from "../utils/constants";
 
 export const useResize = () => {
-    const getWidth =  useCallback(() => window.innerWidth, []);
+    const getWidth = useCallback(() => window.innerWidth, []);
     const [width, setWidth] = useState(getWidth());
 
     useEffect(() => {
         function handleResize(event) {
             setWidth(getWidth());
         };
-        window.addEventListener('resize',resizeThrottler, false);
+        window.addEventListener('resize', resizeThrottler, false);
 
         let resizeTimeout;
+
         function resizeThrottler() {
             if (!resizeTimeout) {
                 resizeTimeout = setTimeout(() => {
@@ -28,9 +29,9 @@ export const useResize = () => {
 
     return {
         width,
-        isScreenSm: width  <= 600,
-        isScreenMd: width <= 800,
-        isScreenLg: width > 800,
+        isScreenSm: width <= WIDTH_SCREEN_600,
+        isScreenMd: width <= WIDTH_SCREEN_800,
+        isScreenLg: width > WIDTH_SCREEN_800,
     };
 };
 

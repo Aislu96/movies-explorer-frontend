@@ -1,3 +1,5 @@
+import {MOVIES_URL} from "./constants";
+
 class MoviesApi {
     #url;
     #headers;
@@ -27,7 +29,7 @@ class MoviesApi {
 }
 
 const moviesApi = new MoviesApi({
-        url: "https://api.nomoreparties.co/beatfilm-movies",
+        url: MOVIES_URL,
         headers: {
             'Content-Type': "application/json"
         }

@@ -2,11 +2,12 @@ import React from "react";
 import "./MoviesCard.css"
 import checkMark from "../../../images/check-mark.svg";
 import iconDelete from "../../../images/iconDelete.svg";
+import {MOVIE_DURATION} from "../../../utils/constants";
 
 function MoviesCard({movie, value, onClickSaveFilm, onClickDeleteFilm, liked}) {
     const classButton = liked ? "movie__button_check-mark" : "movie__button_save";
-    let hours = Math.trunc(movie.duration / 60);
-    let minutes = movie.duration % 60;
+    let hours = Math.trunc(movie.duration / MOVIE_DURATION);
+    let minutes = movie.duration % MOVIE_DURATION;
 
     function handleClickSave() {
         onClickSaveFilm(movie);

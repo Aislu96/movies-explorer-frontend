@@ -16,21 +16,31 @@ import * as auth from "../../utils/auth";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import {CurrentUserContext} from "../../contexts/CurrentUserContext";
 import Preloader from "../Preloader/Preloader";
+import {
+    ERROR_EDITING,
+    ERROR_REGISTRATION,
+    MESSAGE_SUCCESS,
+    STATUS_BAD_REQUEST,
+    STATUS_UNAUTHORIZED,
+} from "../../utils/constants";
 
 function App() {
+   const loggedInSave = JSON.parse(localStorage.getItem('loggedIn'))
     const [errorMessage, setErrorMessage] = useState("");
     const [moviesList, setMoviesList] = useState([]);
     const [cardsMoviesSave, setCardsMoviesSave] = useState([]);
-    const [currentUser, setCurrentUser] = useState([{}]);
-    const [loggedIn, setLoggedIn] = useState(false);
+    const [currentUser, setCurrentUser] = useState([{email: '', name: '', _id: ''}]);
+    const [loggedIn, setLoggedIn] = useState(  loggedInSave || false);
     const [preloader, setPreloader] = useState(false);
     const navigate = useNavigate();
 
 
     useEffect(() => {
-        if (loggedIn) {
+        // if (loggedIn) {
             setPreloader(true);
             mainApi.getUser().then(data => {
+                setLoggedIn(true);
+                localStorage.setItem('loggedIn', JSON.stringify(true));
                 setCurrentUser(data);
             })
                 .catch((error) => {
@@ -39,7 +49,7 @@ function App() {
                 .finally(() => {
                     setPreloader(false);
                 });
-        }
+        // }
     }, [loggedIn])
 
     useEffect(() => {
@@ -67,18 +77,17 @@ function App() {
             // проверим токен
             auth.getContent().then((res) => {
                 if (res) {
+                    // setLoggedIn(true);
                     const userData = {
                         email: res.email,
                         name: res.name,
                         _id: res._id
                     }
-                    setCurrentUser(userData)
-                    setLoggedIn(true);
+                    setCurrentUser(userData);
                 }
             })
                 .catch((error) => {
                     console.log(error);
-                    setLoggedIn(false);
                 })
                 .finally(() => {
                     setPreloader(false);
@@ -90,24 +99,25 @@ function App() {
         setPreloader(true);
         mainApi.patchUser(data)
             .then(data => {
-                setCurrentUser(data);
+                setCurrentUser({email: data.email, name: data.name});
                 navigate('/profile');
+                setErrorMessage(MESSAGE_SUCCESS);
                 console.log(errorMessage);
             })
             .catch((err) => {
                 if (err) {
-                    setErrorMessage("При регистрации пользователя произошла ошибка. Необходимо редактировать все поля.");
+                    setErrorMessage(ERROR_EDITING);
                 }
                 console.log(err);
             })
             .finally(() => {
                 setPreloader(false);
+                setErrorMessage('');
             });
     }
 
 
     function handelSaveMovie(movie) {
-        setPreloader(true);
         mainApi.postSaveMovie(movie)
             .then((newCardMovie) => {
                 setCardsMoviesSave([newCardMovie, ...cardsMoviesSave])
@@ -122,7 +132,6 @@ function App() {
     }
 
     function handelDeleteMovie(movie) {
-        setPreloader(true);
         mainApi.deleteMovie(movie._id)
             .then(() => {
                 const newCardsMoviesSave = cardsMoviesSave.filter((item) => {
@@ -135,7 +144,6 @@ function App() {
             })
             .finally(() => {
                 setPreloader(false);
-                ;
             });
     }
 
@@ -159,12 +167,12 @@ function App() {
         setPreloader(true);
         auth.register(email, password, name).then((res) => {
             if (res) {
-                navigate("/movies", {replace: true});
+                handelLogin({email: res.email, password});
             }
         })
             .catch((err) => {
                 if (err) {
-                    setErrorMessage("При регистрации пользователя произошла ошибка.");
+                    setErrorMessage(ERROR_REGISTRATION);
                 }
                 console.log(err)
             })
@@ -178,12 +186,13 @@ function App() {
         auth.login(values.email, values.password).then((res) => {
             if (res.token) {
                 setLoggedIn(true);
+                localStorage.setItem('loggedIn', JSON.stringify(true));
                 setCurrentUser({email: values.email});
                 navigate("/movies", {replace: true});
             }
         })
             .catch(err => {
-                if (err.status === 400 || err.status === 401) {
+                if (err.status === STATUS_BAD_REQUEST || err.status === STATUS_UNAUTHORIZED) {
                     setErrorMessage("Введен неправильный логин или пароль.");
                 }
                 console.log(err)
@@ -194,86 +203,62 @@ function App() {
     }
 
     function signOut() {
+        setLoggedIn(false);
+        navigate("/", {replace: true});
         localStorage.removeItem('jwt');
         localStorage.clear();
-        setLoggedIn(false);
-        navigate('/signin', {replace: true});
     }
 
     return (
         <CurrentUserContext.Provider value={currentUser}>
             <div className="App">
                 <Routes>
-                    <Route path="/" element={
-                        preloader ? (
-                            <Preloader/>
-                        ) : (
-                            <>
-                                <Header classColor={"color"} loggedIn={loggedIn}/>
-                                <Main/>
-                                <Footer/>
-                            </>
-                        )
-                    }
+                    <Route path="/" element={preloader ? (<Preloader/>) : (
+                        <>
+                            <Header classColor={"color"} loggedIn={loggedIn}/>
+                            <Main/>
+                            <Footer/>
+                        </>)}
                     />
                     <Route path="/movies" element={
-                        preloader ? (
-                            <Preloader/>
-                        ) : (
+                        preloader ? (<Preloader/>) : (
                             <>
                                 <Header colorAuth={"navigation__button-color"}
-                                        colorBurger={"navigation__menu-button_color"}
-                                        logoButtonBlack={logoAuthBlack} loggedIn={loggedIn}/>
+                                        colorBurger={"navigation__menu-button_color"} logoButtonBlack={logoAuthBlack}
+                                        loggedIn={loggedIn}/>
                                 <ProtectedRoute loggedIn={loggedIn} moviesList={moviesList}
                                                 onClickSaveFilm={handelSaveMovie}
-                                                onClickDeleteFilm={handelDeleteMovie} cardsMoviesSave={cardsMoviesSave}
-                                                currentUser={currentUser} element={Movies}/>
-                                <Footer/>
-                            </>
-                        )
-                    }
-                    />
-                    <Route path="/saved-movies" element={
-                        preloader ? (
-                            <Preloader/>
-                        ) : (
-                            <>
-                                <Header colorAuth={"navigation__button-color"}
-                                        colorBurger={"navigation__menu-button_color"}
-                                        logoButtonBlack={logoAuthBlack} loggedIn={loggedIn}/>
-                                <ProtectedRoute loggedIn={loggedIn} onClickDeleteFilm={handelDeleteMovie}
+                                                onClickDeleteFilm={handelDeleteMovie}
                                                 cardsMoviesSave={cardsMoviesSave}
-                                                currentUser={currentUser} element={SavedMovies}/>
+                                                element={Movies}/>
                                 <Footer/>
-                            </>
-                        )
-                    }/>
-                    <Route path="/profile" element={
-                        preloader ? (
-                            <Preloader/>
-                        ) : (
-                            <>
-                                <Header colorAuth={"navigation__button-color"}
-                                        colorBurger={"navigation__menu-button_color"}
-                                        logoButtonBlack={logoAuthBlack} loggedIn={loggedIn}/>
-                                <ProtectedRoute element={Profile} signOut={signOut} user={currentUser}
-                                                errorMessage={errorMessage}
-                                                onUpdateUser={handleUpdateUser} onErrorMessage={setErrorMessage}
-                                                loggedIn={loggedIn}/>
-                            </>
-                        )}/>
-                    <Route path="/signin" element={
-                        preloader ? (
-                            <Preloader/>
-                        ) : (
-                            <Login onSignin={handelLogin} errorMessage={errorMessage}
-                                   onErrorMessage={setErrorMessage}/>)}/>
-                    <Route path="/signup"
-                           element={
-                               preloader ? (
-                                   <Preloader/>
-                               ) : (<Register onSignup={handelRegistration} errorMessage={errorMessage}
-                                              onErrorMessage={setErrorMessage}/>)}/>
+                            </>)}
+                    />
+                    <Route path="/saved-movies" element={preloader ? (<Preloader/>) : (
+                        <>
+                            <Header colorAuth={"navigation__button-color"} colorBurger={"navigation__menu-button_color"}
+                                    logoButtonBlack={logoAuthBlack} loggedIn={loggedIn}/>
+                            <ProtectedRoute loggedIn={loggedIn} moviesList={cardsMoviesSave}
+                                            onClickDeleteFilm={handelDeleteMovie}
+                                            element={SavedMovies}
+                            />
+                            <Footer/>
+                        </>)}
+                    />
+                    <Route path="/profile" element={preloader ? (<Preloader/>) : (
+                        <>
+                            <Header colorAuth={"navigation__button-color"} colorBurger={"navigation__menu-button_color"}
+                                    logoButtonBlack={logoAuthBlack} loggedIn={loggedIn}/>
+                            <ProtectedRoute element={Profile} signOut={signOut} errorMessage={errorMessage}
+                                            onUpdateUser={handleUpdateUser} onErrorMessage={setErrorMessage}
+                                            loggedIn={loggedIn}/>
+                        </>)}
+                    />
+                    <Route path="/signin" element={preloader ? (<Preloader/>) : (
+                        <Login onSignin={handelLogin} errorMessage={errorMessage} onErrorMessage={setErrorMessage}/>)}/>
+                    <Route path="/signup" element={preloader ? (<Preloader/>) : (
+                        <Register onSignup={handelRegistration} errorMessage={errorMessage}
+                                  onErrorMessage={setErrorMessage}/>)}/>
                     <Route path="*" element={<NotFoundPage/>}/>
                 </Routes>
             </div>

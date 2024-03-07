@@ -2,8 +2,10 @@ import React, {useState} from "react";
 import {Link} from "react-router-dom";
 import "../Profile/Profile.css";
 import useFormValidation from "../../hooks/useFormValidation";
+import {CurrentUserContext} from '../../contexts/CurrentUserContext';
 
-function Profile({signOut, user, errorMessage, onUpdateUser, onErrorMessage}) {
+function Profile({signOut, errorMessage, onUpdateUser, onErrorMessage}) {
+    const currentUser = React.useContext(CurrentUserContext);
     const [buttonToggle, setButtonToggle] = useState(false);
 
     const {values, errors, handleChange, setValues, resetValidation, isValid} = useFormValidation({});
@@ -14,21 +16,22 @@ function Profile({signOut, user, errorMessage, onUpdateUser, onErrorMessage}) {
         setValues(values);
     }, [setValues, resetValidation]);
 
-       function handelBtnClick() {
-            setButtonToggle(true);
-        };
+    function handelBtnClick() {
+        onErrorMessage('');
+        setButtonToggle(true);
+    };
 
 
     const handleSubmit = (e) => {
         onErrorMessage('');
         e.preventDefault();
         if (
-            isValid && values.name !== undefined && values.email !== undefined &&
-            (user.name !== values.name || user.email !== values.email)
+            isValid &&
+            (currentUser.name !== values.name || currentUser.email !== values.email)
         ) {
             onUpdateUser({
-                name: values.name,
-                email: values.email,
+                name: values.name || currentUser.name,
+                email: values.email || currentUser.email,
             });
         }
 
@@ -37,7 +40,7 @@ function Profile({signOut, user, errorMessage, onUpdateUser, onErrorMessage}) {
 
     return (
         <section className="profile">
-            <h1 className="profile__title">Привет, {user.name}!</h1>
+            <h1 className="profile__title">Привет, {currentUser.name}!</h1>
             <form className="profile__form" name="form-profile" onSubmit={handleSubmit} noValidate>
                 <div className="profile__block profile__block_line">
                     <div className="profile__label">
@@ -46,7 +49,7 @@ function Profile({signOut, user, errorMessage, onUpdateUser, onErrorMessage}) {
                                placeholder="Имя" minLength="2"
                                maxLength="30"
                                onChange={handleChange} disabled={!buttonToggle}
-                               value={values.name ? values.name : user.name} required/>
+                               value={values.name ? values.name : currentUser.name} required/>
                     </div>
                     <span id="name-error" className="profile__error-span">{errors.name}</span>
                 </div>
@@ -57,7 +60,7 @@ function Profile({signOut, user, errorMessage, onUpdateUser, onErrorMessage}) {
                                placeholder="E-mail" minLength="2"
                                maxLength="30"
                                onChange={handleChange} disabled={!buttonToggle}
-                               value={values.email ? values.email : user.email} required/>
+                               value={values.email ? values.email : currentUser.email} required/>
 
                     </div>
                     <span id="email-error" className="profile__error-span">{errors.email}</span>
@@ -65,7 +68,7 @@ function Profile({signOut, user, errorMessage, onUpdateUser, onErrorMessage}) {
                 {buttonToggle && <div className="profile__item">
                     <span
                         className={errorMessage ? "profile__error profile__error_text" : ""}>{errorMessage}</span>
-                    <button type="submit"
+                    <button type="submit" disabled={!isValid}
                             className={isValid ? "profile__button-save" : "profile__button-save profile__button-save_color"}>Сохранить
                     </button>
                 </div>}
@@ -76,7 +79,7 @@ function Profile({signOut, user, errorMessage, onUpdateUser, onErrorMessage}) {
                 <button type="button" className="profile__button-edit"
                         onClick={handelBtnClick}>Редактировать
                 </button>
-                <Link to={'/signin'} className="profile__link" onClick={signOut}>Выйти из аккаунта</Link>
+                <Link to={'/'} className="profile__link" onClick={signOut}>Выйти из аккаунта</Link>
             </div>}
         </section>
     );

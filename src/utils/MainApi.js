@@ -1,6 +1,7 @@
+import {BASE_URL} from "./constants";
+
 class MainApi {
     #url;
-
     constructor({url}) {
         this.#url = url;
     }
@@ -89,7 +90,7 @@ class MainApi {
 }
 
 const mainApi = new MainApi({
-    url: 'https://api.movies.kharisova.nomoredomainsmonster.ru',
+    url: BASE_URL,
 });
 
 export default mainApi;

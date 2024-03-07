@@ -1,4 +1,5 @@
 import React from "react";
+import {EMAIL_PATTERN, ERROR_NAME, ERROR_PASSWORD, NAME_PATTERN} from "../utils/constants";
 
 function useFormValidation() {
     const [values, setValues] = React.useState({});
@@ -7,10 +8,10 @@ function useFormValidation() {
 
     const handleChange = (e) => {
         const {value, name} = e.target;
-        if (name === 'name' && /^[A-Za-zА-Яа-яЁё -]+$/.test(e.target.value) === false) {
-            e.target.setCustomValidity('Имя должно содержать только латиницу, кириллицу, пробел или дефис');
-        } else if(name === 'email' && /^((([0-9A-Za-z]{1}[-0-9A-z\\.]{1,}[0-9A-Za-z]{1})|([0-9А-Яа-я]{1}[-0-9А-я\\.]{1,}[0-9А-Яа-я]{1}))@([-A-Za-z]{1,}\.){1,2}[-A-Za-z]{2,})$/u.test(e.target.value) === false){
-            e.target.setCustomValidity("Неккоректный email");
+        if (name === 'name' && NAME_PATTERN.test(e.target.value) === false) {
+            e.target.setCustomValidity(ERROR_NAME);
+        } else if (name === 'email' && EMAIL_PATTERN.test(e.target.value) === false) {
+            e.target.setCustomValidity(ERROR_PASSWORD);
         } else {
             e.target.setCustomValidity('');
         }

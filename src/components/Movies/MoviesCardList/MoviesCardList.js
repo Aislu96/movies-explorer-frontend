@@ -2,19 +2,20 @@ import React, {useEffect, useState} from "react";
 import MoviesCard from "../MoviesCard/MoviesCard";
 import "./MoviesCardList.css";
 import {useResize} from "../../../hooks/useResize";
+import {ERROR_NOT_FOUND, MOVIES_CARD_12, MOVIES_CARD_2, MOVIES_CARD_5, MOVIES_CARD_8} from "../../../utils/constants";
 
-function MoviesCardList({currentUser, cardsMoviesSave, moviesFilter, value, onClickSaveFilm, onClickDeleteFilm}) {
+function MoviesCardList({cardsMoviesSave, moviesFilter, value, onClickSaveFilm, onClickDeleteFilm}) {
     const {width, isScreenSm, isScreenMd, isScreenLg} = useResize();
     const [countMoviesCard, setCountMoviesCard] = useState(0);
     const [isLoading, setIsLoading] = useState(false);
 
     function handelClickIncrease() {
         if (isScreenSm === true) {
-            return setCountMoviesCard(countMoviesCard + 2);
+            return setCountMoviesCard(countMoviesCard + MOVIES_CARD_2);
         } else if (isScreenMd === true) {
-            return setCountMoviesCard(countMoviesCard + 8);
+            return setCountMoviesCard(countMoviesCard + MOVIES_CARD_8);
         } else if (isScreenLg === true) {
-            return setCountMoviesCard(countMoviesCard + 12)
+            return setCountMoviesCard(countMoviesCard + MOVIES_CARD_12)
         }
     }
 
@@ -29,22 +30,22 @@ function MoviesCardList({currentUser, cardsMoviesSave, moviesFilter, value, onCl
 
     useEffect(() => {
         if (isScreenSm === true) {
-            return setCountMoviesCard(5);
+            return setCountMoviesCard(MOVIES_CARD_5);
         } else if (isScreenMd === true) {
-            return setCountMoviesCard(8);
+            return setCountMoviesCard(MOVIES_CARD_8);
         } else if (isScreenLg === true) {
-            return setCountMoviesCard(12)
+            return setCountMoviesCard(MOVIES_CARD_12)
         }
     }, [width, isScreenSm, isScreenMd, isScreenLg])
 
 
     function getPagesMovie() {
         return moviesFilter.slice(0, countMoviesCard).map(movie => (
-            <MoviesCard currentUser={currentUser}
-                        key={movie.id}
-                        movie={movie} value={value}
-                        onClickSaveFilm={onClickSaveFilm}
-                        onClickDeleteFilm={onClickDeleteFilm}
+            <MoviesCard
+                key={movie.id}
+                movie={movie} value={value}
+                onClickSaveFilm={onClickSaveFilm}
+                onClickDeleteFilm={onClickDeleteFilm}
             />)
         )
     }
@@ -55,12 +56,12 @@ function MoviesCardList({currentUser, cardsMoviesSave, moviesFilter, value, onCl
                     return item.movieId === movie.id;
                 });
                 const likedMovieId = likedMovie ? likedMovie._id : null;
-                return (<MoviesCard currentUser={currentUser}
-                                    key={movie.id}
-                                    movie={{...movie, _id: likedMovieId}} value={value}
-                                    onClickSaveFilm={onClickSaveFilm}
-                                    onClickDeleteFilm={onClickDeleteFilm}
-                                    liked={likedMovie ? true : false}
+                return (<MoviesCard
+                    key={movie.id}
+                    movie={{...movie, _id: likedMovieId}} value={value}
+                    onClickSaveFilm={onClickSaveFilm}
+                    onClickDeleteFilm={onClickDeleteFilm}
+                    liked={likedMovie ? true : false}
                 />)
             }
         )
@@ -72,7 +73,7 @@ function MoviesCardList({currentUser, cardsMoviesSave, moviesFilter, value, onCl
                 <div className="movies-cards__container">
                     {cardsMoviesSave ? getPagesMovieSave() : getPagesMovie()}
                 </div>
-            ) : <div className="movies-cards__text">Ничего не найдено</div>}
+            ) : <div className="movies-cards__text">{ERROR_NOT_FOUND}</div>}
             {moviesFilter.length !== 0 && isLoading ? (<button type="submit" className="movies-cards__button"
                                                                onClick={handelClickIncrease}>Ещё</button>) : ''
             }

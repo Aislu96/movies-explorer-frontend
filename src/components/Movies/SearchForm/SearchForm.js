@@ -1,8 +1,9 @@
 import React from "react";
 import "./SearchForm.css";
-import Checked from "../../Checked/Checked";
+import Checked from "../SearchForm/Checked/Checked";
 import iconFind from "../../../images/find.svg";
 import useFormValidation from "../../../hooks/useFormValidation";
+import {ERROR_MOVIE_SEARCH} from "../../../utils/constants";
 
 function SearchFrom({onChangeChecked, checked, onSearchMovies}) {
     const {values, errors, handleChange, setValues, resetValidation} = useFormValidation({});
@@ -15,7 +16,7 @@ function SearchFrom({onChangeChecked, checked, onSearchMovies}) {
 
     function handleSubmit(e) {
         e.preventDefault();
-        onSearchMovies(values.movies);
+        onSearchMovies(values.movies, checked);
     }
 
     return (
@@ -29,9 +30,9 @@ function SearchFrom({onChangeChecked, checked, onSearchMovies}) {
                            required/>
                     <button className="search-form__button" type="submit">Найти</button>
                 </div>
-                <Checked checked={checked} onChangeChecked={onChangeChecked}/>
+                <Checked checked={checked} onChangeChecked={onChangeChecked} value={values.movies}/>
             </form>
-            <div id="movies-error" className={errors.movies && "search-form__error"}>{errors.movies? "Нужно ввести ключевое слово" : ''}</div>
+            <div id="movies-error" className={errors.movies && "search-form__error"}>{errors.movies? ERROR_MOVIE_SEARCH : ''}</div>
         </section>
     );
 }
