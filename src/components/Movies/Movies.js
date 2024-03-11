@@ -8,8 +8,7 @@ function Movies({moviesList, onClickSaveFilm, onClickDeleteFilm, cardsMoviesSave
     const filmSearchQuerySave = JSON.parse(localStorage.getItem('filmSearchQuery'));
     const moviesFilterSave = JSON.parse(localStorage.getItem('moviesFilter'));
     const checkedSave = JSON.parse(localStorage.getItem('checked'));
-    const checkedItem = checkedSave ? true : false;
-    const [checked, setChecked] = useState(checkedItem);
+    const [checked, setChecked] = useState(checkedSave || true);
     const [moviesFilter, setMoviesFilter] = useState(moviesFilterSave || []);
     const [filmSearchQuery, setFilmSearchQuery] = useState(filmSearchQuerySave || '');
 
