@@ -32,9 +32,9 @@ function SavedMovies({onClickSaveFilm, onClickDeleteFilm, cardsMoviesSave, cardD
         setFilmSearchQuery(value);
     }
 
-    function handleChangeChecked() {
+    function handleChangeChecked(movie) {
         setChecked(!checked);
-        handelSearchMovies(filmSearchQuery, !checked);
+        handelSearchMovies(movie, !checked);
     }
 
     return (

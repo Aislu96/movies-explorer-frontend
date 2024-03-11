@@ -6,7 +6,7 @@ import useFormValidation from "../../hooks/useFormValidation";
 import {ERROR_MOVIE_SEARCH} from "../../utils/constants";
 
 function SearchFrom({onChangeChecked, checked, onSearchMovies}) {
-    const {values, errors, handleChange, setValues, resetValidation} = useFormValidation({});
+    const {values, errors, handleChange, setValues, resetValidation, isValid} = useFormValidation({});
 
     React.useEffect(() => {
         resetValidation();
@@ -25,11 +25,11 @@ function SearchFrom({onChangeChecked, checked, onSearchMovies}) {
                 <div className="search-form__label">
                     <img alt="Изображение иконки найти" src={iconFind} className="search-form__img"/>
                     <input name="movies" type="text" className="search-form__input" placeholder="Фильм" onChange={handleChange} value={values.movies || ""} required/>
-                    <button className="search-form__button" type="submit">Найти</button>
+                    <button className="search-form__button" type="submit" disabled={!isValid}>Найти</button>
                 </div>
-                <Checked checked={checked} onChangeChecked={onChangeChecked} movie={values.movies}/>
+                <Checked checked={checked} onChangeChecked={onChangeChecked} movie={values.movies} isValid={isValid}/>
             </form>
-            <div id="movies-error" className={errors.movies && "search-form__error"}>{errors.movies? ERROR_MOVIE_SEARCH : ''}</div>
+            <div id="movies-error" className={errors.movies && "search-form__error"}>{errors.movies ? ERROR_MOVIE_SEARCH : ''}</div>
         </section>
     );
 }

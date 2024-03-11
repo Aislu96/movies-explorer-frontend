@@ -33,9 +33,9 @@ function Movies({moviesList, onClickSaveFilm, onClickDeleteFilm, cardsMoviesSave
     }
 
 
-    function handleChangeChecked() {
+    function handleChangeChecked(movie) {
         setChecked(!checked);
-        handelSearchMovies(filmSearchQuery, !checked);
+        handelSearchMovies(movie, !checked)
     }
 
 
