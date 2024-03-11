@@ -1,9 +1,9 @@
 import React from "react";
 import "./SearchForm.css";
-import Checked from "../SearchForm/Checked/Checked";
-import iconFind from "../../../images/find.svg";
-import useFormValidation from "../../../hooks/useFormValidation";
-import {ERROR_MOVIE_SEARCH} from "../../../utils/constants";
+import Checked from "../Checked/Checked";
+import iconFind from "../../images/find.svg";
+import useFormValidation from "../../hooks/useFormValidation";
+import {ERROR_MOVIE_SEARCH} from "../../utils/constants";
 
 function SearchFrom({onChangeChecked, checked, onSearchMovies}) {
     const {values, errors, handleChange, setValues, resetValidation} = useFormValidation({});
@@ -24,13 +24,10 @@ function SearchFrom({onChangeChecked, checked, onSearchMovies}) {
             <form name="movies" className="search-form__container" onSubmit={handleSubmit} noValidate>
                 <div className="search-form__label">
                     <img alt="Изображение иконки найти" src={iconFind} className="search-form__img"/>
-                    <input name="movies" type="text" className="search-form__input" placeholder="Фильм"
-                           onChange={handleChange}
-                           value={values.movies || ""}
-                           required/>
+                    <input name="movies" type="text" className="search-form__input" placeholder="Фильм" onChange={handleChange} value={values.movies || ""} required/>
                     <button className="search-form__button" type="submit">Найти</button>
                 </div>
-                <Checked checked={checked} onChangeChecked={onChangeChecked} value={values.movies}/>
+                <Checked checked={checked} onChangeChecked={onChangeChecked} movie={values.movies}/>
             </form>
             <div id="movies-error" className={errors.movies && "search-form__error"}>{errors.movies? ERROR_MOVIE_SEARCH : ''}</div>
         </section>

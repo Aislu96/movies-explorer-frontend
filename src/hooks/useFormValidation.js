@@ -32,7 +32,7 @@ function useFormValidation() {
 
 
     return {
-        values, errors, handleChange, setValues, setErrors, resetValidation, isValid
+        values, errors, handleChange, setValues, setErrors, resetValidation, isValid, setIsValid
     };
 }
 

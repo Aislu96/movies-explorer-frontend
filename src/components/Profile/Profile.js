@@ -8,33 +8,37 @@ function Profile({signOut, errorMessage, onUpdateUser, onErrorMessage}) {
     const currentUser = React.useContext(CurrentUserContext);
     const [buttonToggle, setButtonToggle] = useState(false);
 
-    const {values, errors, handleChange, setValues, resetValidation, isValid} = useFormValidation({});
+    const {values, errors, handleChange, setValues, resetValidation, isValid, setIsValid} = useFormValidation({});
 
     React.useEffect(() => {
         resetValidation({});
-        const values = {};
+        const values = {
+            name: currentUser.name,
+            email: currentUser.email
+        };
         setValues(values);
-    }, [setValues, resetValidation]);
+    }, [setValues, currentUser, resetValidation]);
+
+    React.useEffect(() => {
+        if (currentUser.name === values.name && currentUser.email === values.email) {
+            setIsValid(false);
+        }
+    }, [resetValidation, setIsValid, values, currentUser]);
 
     function handelBtnClick() {
         onErrorMessage('');
         setButtonToggle(true);
     };
 
-
     const handleSubmit = (e) => {
         onErrorMessage('');
         e.preventDefault();
-        if (
-            isValid &&
-            (currentUser.name !== values.name || currentUser.email !== values.email)
-        ) {
+        if (isValid && (currentUser.name !== values.name || currentUser.email !== values.email)) {
             onUpdateUser({
                 name: values.name || currentUser.name,
                 email: values.email || currentUser.email,
             });
         }
-
         setButtonToggle(false);
     };
 
@@ -66,19 +70,13 @@ function Profile({signOut, errorMessage, onUpdateUser, onErrorMessage}) {
                     <span id="email-error" className="profile__error-span">{errors.email}</span>
                 </div>
                 {buttonToggle && <div className="profile__item">
-                    <span
-                        className={errorMessage ? "profile__error profile__error_text" : ""}>{errorMessage}</span>
-                    <button type="submit" disabled={!isValid}
-                            className={isValid ? "profile__button-save" : "profile__button-save profile__button-save_color"}>Сохранить
-                    </button>
+                    <span className={errorMessage ? "profile__error profile__error_text" : ""}>{errorMessage}</span>
+                    <button type="submit" disabled={!isValid} className={isValid ? "profile__button-save" : "profile__button-save profile__button-save_color"}>Сохранить</button>
                 </div>}
             </form>
             {!buttonToggle && <div className="profile__item">
-                 <span
-                     className={errorMessage ? "profile__error profile__error_text" : ""}>{errorMessage}</span>
-                <button type="button" className="profile__button-edit"
-                        onClick={handelBtnClick}>Редактировать
-                </button>
+                 <span className={errorMessage ? "profile__error profile__error_text" : ""}>{errorMessage}</span>
+                <button type="button" className="profile__button-edit" onClick={handelBtnClick}>Редактировать</button>
                 <Link to={'/'} className="profile__link" onClick={signOut}>Выйти из аккаунта</Link>
             </div>}
         </section>

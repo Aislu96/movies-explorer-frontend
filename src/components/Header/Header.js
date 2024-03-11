@@ -13,12 +13,8 @@ function Header({loggedIn, classColor, colorAuth, colorBurger, logoButtonBlack})
         <header className={`header ${classColor}`}>
             <NavOpenWithAuth isMenuToggle={menuToggle} setMenuToggle={setMenuToggle}/>
             <div className="header__container">
-                <Link to="/" className="header__logo-link">
-                    <img src={logo} className="header__logo" alt="Логотип проекта Movies"/>
-                </Link>
-                <Navigation colorAuth={colorAuth} colorBurger={colorBurger}
-                            logoButtonBlack={logoButtonBlack} loggedIn={loggedIn}
-                            setMenuToggle={setMenuToggle}/>
+                <Link to="/" className="header__logo-link"><img src={logo} className="header__logo" alt="Логотип проекта Movies"/></Link>
+                <Navigation colorAuth={colorAuth} colorBurger={colorBurger} logoButtonBlack={logoButtonBlack} loggedIn={loggedIn} setMenuToggle={setMenuToggle}/>
             </div>
         </header>
     )

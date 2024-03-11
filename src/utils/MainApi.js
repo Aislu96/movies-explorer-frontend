@@ -2,6 +2,7 @@ import {BASE_URL} from "./constants";
 
 class MainApi {
     #url;
+
     constructor({url}) {
         this.#url = url;
     }

@@ -7,4 +7,4 @@ const filterFilms = (moviesList, value) => {
     });
 }
 
-export default  filterFilms;
+export default filterFilms;

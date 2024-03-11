@@ -1,13 +1,12 @@
 import {BASE_URL} from "./constants";
 
-
 export const register = (email, password, name) => {
     return fetch(`${BASE_URL}/signup`, {
         method: 'POST',
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({email,name, password})
+        body: JSON.stringify({email, name, password})
     }).then((response) => {
         try {
             if (response.status === 201) {
@@ -19,7 +18,6 @@ export const register = (email, password, name) => {
         }
     })
 };
-
 
 export const login = (email, password) => {
     return fetch(`${BASE_URL}/signin`, {

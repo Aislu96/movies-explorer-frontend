@@ -17,7 +17,7 @@ function Main() {
         const name = e.target.attributes.name.value;
         const element = refs[name].current;
         if (element) {
-            element.scrollIntoView({ behavior: "smooth" });
+            element.scrollIntoView({behavior: "smooth"});
         }
     }
 
@@ -28,7 +28,7 @@ function Main() {
             <AboutProject ref={refs.project}/>
             <Techs ref={refs.techs}/>
             <AboutMe ref={refs.student}/>
-            <Portfolio />
+            <Portfolio/>
         </main>
     );
 }

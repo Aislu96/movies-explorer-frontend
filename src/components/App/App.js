@@ -32,8 +32,8 @@ function App() {
     const [currentUser, setCurrentUser] = useState([{email: '', name: '', _id: ''}]);
     const [loggedIn, setLoggedIn] = useState(loggedInSave || false);
     const [preloader, setPreloader] = useState(false);
+    const [cardDelete, setCardDelete] = useState('');
     const navigate = useNavigate();
-
 
     useEffect(() => {
         setPreloader(true);
@@ -101,13 +101,11 @@ function App() {
                 setCurrentUser({email: data.email, name: data.name});
                 navigate('/profile');
                 setErrorMessage(MESSAGE_SUCCESS);
-                console.log(errorMessage);
             })
             .catch((err) => {
                 if (err) {
                     setErrorMessage(ERROR_EDITING);
                 }
-                console.log(err);
             })
             .finally(() => {
                 setPreloader(false);
@@ -130,13 +128,13 @@ function App() {
     }
 
     function handelDeleteMovie(movie) {
-        mainApi.deleteMovie(movie._id)
-            .then(() => {
-                const newCardsMoviesSave = cardsMoviesSave.filter((item) => {
-                    return item._id !== movie._id;
-                });
-                setCardsMoviesSave(newCardsMoviesSave);
-            })
+        mainApi.deleteMovie(movie._id).then(() => {
+            const newCardsMoviesSave = cardsMoviesSave.filter((item) => {
+                return item._id !== movie._id;
+            });
+            setCardsMoviesSave(newCardsMoviesSave);
+            setCardDelete(movie._id);
+        })
             .catch((err) => {
                 console.log(err);
             })
@@ -148,10 +146,9 @@ function App() {
     React.useEffect(() => {
         if (loggedIn) {
             setPreloader(true);
-            mainApi.getSaveMovies()
-                .then((data) => {
-                    setCardsMoviesSave(data);
-                })
+            mainApi.getSaveMovies().then((data) => {
+                setCardsMoviesSave(data);
+            })
                 .catch(err => {
                     console.log(err);
                 })
@@ -172,7 +169,6 @@ function App() {
                 if (err) {
                     setErrorMessage(ERROR_REGISTRATION);
                 }
-                console.log(err)
             })
             .finally(() => {
                 setPreloader(false);
@@ -193,7 +189,6 @@ function App() {
                 if (err.status === STATUS_BAD_REQUEST || err.status === STATUS_UNAUTHORIZED) {
                     setErrorMessage("Введен неправильный логин или пароль.");
                 }
-                console.log(err)
             })
             .finally(() => {
                 setPreloader(false);
@@ -218,8 +213,7 @@ function App() {
                             <Footer/>
                         </>)}
                     />
-                    <Route path="/movies" element={
-                        preloader ? (<Preloader/>) : (
+                    <Route path="/movies" element={preloader ? (<Preloader/>) : (
                             <>
                                 <Header colorAuth={"navigation__button-color"}
                                         colorBurger={"navigation__menu-button_color"} logoButtonBlack={logoAuthBlack}
@@ -239,8 +233,8 @@ function App() {
                             <ProtectedRoute loggedIn={loggedIn} moviesList={cardsMoviesSave}
                                             cardsMoviesSave={cardsMoviesSave}
                                             onClickDeleteFilm={handelDeleteMovie}
-                                            element={SavedMovies}
-                            />
+                                            element={SavedMovies} cardDelete={cardDelete}
+                                            setCardDelete={setCardDelete}/>
                             <Footer/>
                         </>)}
                     />
@@ -253,11 +247,12 @@ function App() {
                                             loggedIn={loggedIn}/>
                         </>)}
                     />
-                    <Route path="/signin" element={preloader ? (<Preloader/>) : (
-                        <Login onSignin={handelLogin} errorMessage={errorMessage} onErrorMessage={setErrorMessage}/>)}/>
-                    <Route path="/signup" element={preloader ? (<Preloader/>) : (
+                    {!loggedIn && <Route path="/signin" element={preloader ? (<Preloader/>) : (
+                        <Login onSignin={handelLogin} errorMessage={errorMessage}
+                               onErrorMessage={setErrorMessage}/>)}/>}
+                    {!loggedIn && <Route path="/signup" element={preloader ? (<Preloader/>) : (
                         <Register onSignup={handelRegistration} errorMessage={errorMessage}
-                                  onErrorMessage={setErrorMessage}/>)}/>
+                                  onErrorMessage={setErrorMessage}/>)}/>}
                     <Route path="*" element={<NotFoundPage/>}/>
                 </Routes>
             </div>

@@ -1,6 +1,6 @@
-import React, {useState} from "react";
-import SearchForm from "./SearchForm/SearchForm";
-import MoviesCardList from "./MoviesCardList/MoviesCardList";
+import React, {useEffect, useState} from "react";
+import SearchForm from "../SearchForm/SearchForm";
+import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import {MOVIES_SHORTS_DURATION} from "../../utils/constants";
 import filterFilms from "../../utils/utils";
 
@@ -13,22 +13,24 @@ function Movies({moviesList, onClickSaveFilm, onClickDeleteFilm, cardsMoviesSave
     const [moviesFilter, setMoviesFilter] = useState(moviesFilterSave || []);
     const [filmSearchQuery, setFilmSearchQuery] = useState(filmSearchQuerySave || '');
 
+    useEffect(() => {
+        localStorage.setItem('checked', JSON.stringify(checked));
+        localStorage.setItem('moviesFilter', JSON.stringify(moviesFilter));
+        localStorage.setItem('filmSearchQuery', JSON.stringify(filmSearchQuery));
+    }, [checked, moviesFilter, filmSearchQuery])
+
+
     function handelSearchMovies(value, item) {
         if ((!item && item !== undefined)) {
-            localStorage.setItem('checked', JSON.stringify(item));
             const filter = filterFilms(moviesList, value);
             const shortFilms = filter.filter((item) => item.duration < MOVIES_SHORTS_DURATION);
             setMoviesFilter(shortFilms);
-            localStorage.setItem('moviesFilter', JSON.stringify(shortFilms));
         } else {
-            localStorage.setItem('checked', JSON.stringify(true));
             setFilmSearchQuery(value);
             const filter = filterFilms(moviesList, value);
             setMoviesFilter(filter);
-            localStorage.setItem('moviesFilter', JSON.stringify(filter));
         }
         setFilmSearchQuery(value);
-        localStorage.setItem('filmSearchQuery', JSON.stringify(value));
     }
 
 
@@ -41,9 +43,7 @@ function Movies({moviesList, onClickSaveFilm, onClickDeleteFilm, cardsMoviesSave
     return (
         <main className="movies">
             <SearchForm checked={checked} onSearchMovies={handelSearchMovies} onChangeChecked={handleChangeChecked}/>
-            <MoviesCardList cardsMoviesSave={cardsMoviesSave} moviesFilter={moviesFilter}
-                            value={true} onClickSaveFilm={onClickSaveFilm}
-                            onClickDeleteFilm={onClickDeleteFilm}/>
+            <MoviesCardList cardsMoviesSave={cardsMoviesSave} moviesFilter={moviesFilter} value={true} onClickSaveFilm={onClickSaveFilm} onClickDeleteFilm={onClickDeleteFilm}/>
         </main>
     );
 }
