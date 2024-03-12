@@ -39,7 +39,7 @@ function SavedMovies({onClickSaveFilm, onClickDeleteFilm, cardsMoviesSave, cardD
 
     return (
         <main className="movies">
-            <SearchForm checked={checked} onSearchMovies={handelSearchMovies} onChangeChecked={handleChangeChecked}/>
+            <SearchForm filmSearchQuery={filmSearchQuery} checked={checked} onSearchMovies={handelSearchMovies} onChangeChecked={handleChangeChecked}/>
             <MoviesCardList cardsMoviesSave={cardsMoviesSave} moviesFilter={moviesFilter} value={false} onClickSaveFilm={onClickSaveFilm} onClickDeleteFilm={onClickDeleteFilm}/>
         </main>
     );

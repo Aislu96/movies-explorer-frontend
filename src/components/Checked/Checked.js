@@ -1,13 +1,15 @@
 import "./Checked.css";
 import React from "react";
 
-function Checked({checked, onChangeChecked, isValid, movie}) {
+function Checked({checked, onChangeChecked, movie}) {
     function handelSubmit(e) {
-        onChangeChecked(movie)
+        if(movie !== undefined) {
+            onChangeChecked(movie)
+        }
     }
     return (
         <div className="container">
-            <input type="checkbox" id="toggle-button" className="toggle-button" checked={checked} disabled={!isValid} onChange={handelSubmit}/>
+            <input type="checkbox" id="toggle-button" className="toggle-button" checked={checked} onChange={handelSubmit}/>
             <label htmlFor="toggle-button" className="text">Короткометражки</label>
         </div>
     );

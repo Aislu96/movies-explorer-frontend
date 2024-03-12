@@ -5,12 +5,14 @@ import iconFind from "../../images/find.svg";
 import useFormValidation from "../../hooks/useFormValidation";
 import {ERROR_MOVIE_SEARCH} from "../../utils/constants";
 
-function SearchFrom({onChangeChecked, checked, onSearchMovies}) {
+function SearchFrom({filmSearchQuery, onChangeChecked, checked, onSearchMovies}) {
     const {values, errors, handleChange, setValues, resetValidation, isValid} = useFormValidation({});
 
     React.useEffect(() => {
-        resetValidation();
-        const values = {};
+        resetValidation({});
+        const values = {
+            movies: filmSearchQuery
+        };
         setValues(values);
     }, [setValues, resetValidation]);
 
@@ -24,7 +26,7 @@ function SearchFrom({onChangeChecked, checked, onSearchMovies}) {
             <form name="movies" className="search-form__container" onSubmit={handleSubmit} noValidate>
                 <div className="search-form__label">
                     <img alt="Изображение иконки найти" src={iconFind} className="search-form__img"/>
-                    <input name="movies" type="text" className="search-form__input" placeholder="Фильм" onChange={handleChange} value={values.movies || ""} required/>
+                    <input name="movies" type="text" className="search-form__input" placeholder="Фильм" onChange={handleChange} value={values.movies || ''} required/>
                     <button className="search-form__button" type="submit" disabled={!isValid}>Найти</button>
                 </div>
                 <Checked checked={checked} onChangeChecked={onChangeChecked} movie={values.movies} isValid={isValid}/>
