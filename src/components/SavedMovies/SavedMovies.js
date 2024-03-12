@@ -23,7 +23,7 @@ function SavedMovies({onClickSaveFilm, onClickDeleteFilm, cardsMoviesSave, cardD
     function handelSearchMovies(value, item) {
         if ((!item && item !== undefined)) {
             const filter = filterFilms(cardsMoviesSave, value);
-            const shortFilms = filter.filter((item) => item.duration < MOVIES_SHORTS_DURATION);
+            const shortFilms = filter.filter((film) => film.duration < MOVIES_SHORTS_DURATION);
             setMoviesFilter(shortFilms);
         } else {
             const filter = filterFilms(cardsMoviesSave, value);

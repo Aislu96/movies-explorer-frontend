@@ -3,9 +3,7 @@ import React from "react";
 
 function Checked({checked, onChangeChecked, movie}) {
     function handelSubmit(e) {
-        if(movie !== undefined) {
             onChangeChecked(movie)
-        }
     }
     return (
         <div className="container">

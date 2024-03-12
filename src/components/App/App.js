@@ -36,18 +36,20 @@ function App() {
     const navigate = useNavigate();
 
     useEffect(() => {
-        setPreloader(true);
-        mainApi.getUser().then(data => {
-            setLoggedIn(true);
-            localStorage.setItem('loggedIn', JSON.stringify(true));
-            setCurrentUser(data);
-        })
-            .catch((error) => {
-                console.log(error);
+        if (loggedIn) {
+            setPreloader(true);
+            mainApi.getUser().then(data => {
+                setLoggedIn(true);
+                localStorage.setItem('loggedIn', JSON.stringify(true));
+                setCurrentUser(data);
             })
-            .finally(() => {
-                setPreloader(false);
-            });
+                .catch((error) => {
+                    console.log(error);
+                })
+                .finally(() => {
+                    setPreloader(false);
+                });
+        }
     }, [loggedIn])
 
     useEffect(() => {
