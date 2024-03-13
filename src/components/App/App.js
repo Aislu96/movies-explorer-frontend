@@ -28,12 +28,17 @@ function App() {
     const loggedInSave = JSON.parse(localStorage.getItem('loggedIn'))
     const [errorMessage, setErrorMessage] = useState("");
     const [moviesList, setMoviesList] = useState([]);
-    const [cardsMoviesSave, setCardsMoviesSave] = useState([]);
+    const cardsMoviesSaveLocal = JSON.parse(localStorage.getItem('cardsMoviesSave'));
+    const [cardsMoviesSave, setCardsMoviesSave] = useState(cardsMoviesSaveLocal || []);
     const [currentUser, setCurrentUser] = useState([{email: '', name: '', _id: ''}]);
     const [loggedIn, setLoggedIn] = useState(loggedInSave || false);
     const [preloader, setPreloader] = useState(false);
     const [cardDelete, setCardDelete] = useState('');
     const navigate = useNavigate();
+
+    useEffect(() => {
+        localStorage.setItem('cardsMoviesSave', JSON.stringify(cardsMoviesSave));
+    }, [cardsMoviesSave])
 
     useEffect(() => {
         if (loggedIn) {
@@ -202,6 +207,7 @@ function App() {
         navigate("/", {replace: true});
         localStorage.removeItem('jwt');
         localStorage.clear();
+        setCardsMoviesSave([]);
     }
 
     return (
@@ -216,17 +222,17 @@ function App() {
                         </>)}
                     />
                     <Route path="/movies" element={preloader ? (<Preloader/>) : (
-                            <>
-                                <Header colorAuth={"navigation__button-color"}
-                                        colorBurger={"navigation__menu-button_color"} logoButtonBlack={logoAuthBlack}
-                                        loggedIn={loggedIn}/>
-                                <ProtectedRoute loggedIn={loggedIn} moviesList={moviesList}
-                                                onClickSaveFilm={handelSaveMovie}
-                                                onClickDeleteFilm={handelDeleteMovie}
-                                                cardsMoviesSave={cardsMoviesSave}
-                                                element={Movies}/>
-                                <Footer/>
-                            </>)}
+                        <>
+                            <Header colorAuth={"navigation__button-color"}
+                                    colorBurger={"navigation__menu-button_color"} logoButtonBlack={logoAuthBlack}
+                                    loggedIn={loggedIn}/>
+                            <ProtectedRoute loggedIn={loggedIn} moviesList={moviesList}
+                                            onClickSaveFilm={handelSaveMovie}
+                                            onClickDeleteFilm={handelDeleteMovie}
+                                            cardsMoviesSave={cardsMoviesSave}
+                                            element={Movies}/>
+                            <Footer/>
+                        </>)}
                     />
                     <Route path="/saved-movies" element={preloader ? (<Preloader/>) : (
                         <>

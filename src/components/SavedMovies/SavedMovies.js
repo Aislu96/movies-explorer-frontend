@@ -9,7 +9,8 @@ function SavedMovies({onClickSaveFilm, onClickDeleteFilm, cardsMoviesSave, cardD
     const [checked, setChecked] = useState(true);
     const [moviesFilter, setMoviesFilter] = useState(cardsMoviesSave);
     const [filmSearchQuery, setFilmSearchQuery] = useState('');
-
+    console.log(moviesFilter)
+    console.log(cardsMoviesSave)
     React.useEffect(() => {
         if (cardDelete) {
             const cardDeleteFilter = moviesFilter.filter((item) => {
