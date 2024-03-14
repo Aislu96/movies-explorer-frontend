@@ -1,0 +1,16 @@
+:root {
+    display: flex;
+    flex-direction: column;
+    max-width: 1280px;
+    margin: 0 auto;
+    min-width: 320px;
+    background-color: #FFFFFF;
+    font-family: "Inter", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+    box-sizing: border-box;
+}

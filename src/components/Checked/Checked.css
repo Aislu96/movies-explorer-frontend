@@ -1,0 +1,84 @@
+.toggle-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.toggle-button {
+    position: relative;
+    display: inline-block;
+    width: 34px;
+    height: 14px;
+    margin: 0;
+    vertical-align: top;
+    background: #2BE080;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    cursor: pointer;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+.toggle-button::after {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    right: 2px;
+    top: 2px;
+    width: 10px;
+    height: 10px;
+    background-color: #FFFFFF;
+    border-radius: 50%;
+    transform: translateX(0);
+}
+
+.toggle-button:checked::after {
+    transform: translateX(calc(100% - 30px));
+    background-color: #F5F5F5;
+}
+
+.toggle-button:checked {
+    background-color: #EBEBEB;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    gap: 14px;
+    align-items: center;
+    margin-left: 29px;
+}
+
+.text {
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 18px;
+}
+
+@media screen and (max-width: 800px) {
+    .container {
+        margin-left: 19px;
+        gap: 17px;
+    }
+
+    .text {
+        width: 117px;
+    }
+}
+
+
+@media screen and (max-width: 600px) {
+    .container {
+        display: flex;
+        justify-content: center;
+        margin: 46px auto 0;
+        gap: 14px;
+    }
+
+    .text {
+        font-size: 11px;
+        width: 99px;
+    }
+}
